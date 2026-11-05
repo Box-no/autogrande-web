@@ -1,33 +1,33 @@
-import { Reveal } from "@/components/reveal";
+import { ButtonLink } from "@/components/button-link";
 import { brands, company } from "@/content/site";
 
 export function Brands() {
   return (
-    <section aria-labelledby="merker-tittel" className="bg-bone py-24 text-ink md:py-36">
+    <section aria-labelledby="merker-tittel" className="bg-ink py-20 text-paper md:py-28">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <p className="flex items-center gap-3 text-eyebrow font-medium uppercase tracking-eyebrow text-stone-dark">
-          <span aria-hidden="true" className="h-px w-10 bg-brand" />
-          Spesialister
-        </p>
+        <p className="text-sm font-semibold text-stone">Spesialister</p>
         <h2 id="merker-tittel" className="sr-only">
           Spesialisert på Audi, BMW og Mercedes-Benz
         </h2>
 
-        <ul className="mt-10 border-t border-line-light">
+        <ul className="mt-8 grid border-y-2 border-line-dark md:grid-cols-3">
           {brands.map((brand, i) => (
-            <li key={brand} className="border-b border-line-light">
-              <Reveal delay={i * 0.08}>
-                <p className="py-6 font-display text-display-xl tracking-display md:py-8">{brand}</p>
-              </Reveal>
+            <li
+              key={brand}
+              className={`py-6 font-display text-display-lg md:py-10 ${
+                i > 0 ? "border-t border-line-dark md:border-t-0 md:border-l md:pl-8" : ""
+              }`}
+            >
+              {brand}
             </li>
           ))}
         </ul>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-12">
-          <p className="font-display text-display-md tracking-display lg:col-span-6">
-            Skreddersy drømmebilen <span className="italic text-stone-dark">gjennom vårt kontaktnett.</span>
+        <div className="mt-14 grid gap-10 lg:grid-cols-12">
+          <p className="font-display text-display-md text-balance lg:col-span-5">
+            Skreddersy drømmebilen gjennom vårt kontaktnett.
           </p>
-          <div className="space-y-6 text-lg leading-relaxed text-stone-dark lg:col-span-5 lg:col-start-8">
+          <div className="space-y-5 text-lg leading-relaxed text-stone lg:col-span-6 lg:col-start-7">
             <p>
               Vi har valgt å spesialisere oss på Audi, BMW og Mercedes-Benz. Gjennom en årrekke har vi opparbeidet oss
               et solid kontaktnett over hele Tyskland. Det gjør at vi kan tilby deg kvalitet og sikkerhet, samt en bil
@@ -43,15 +43,9 @@ export function Brands() {
               AutoGrande AS er en selvstendig importør, og bistår mer enn gjerne med å skreddersy din drømmebil gjennom
               kontaktnettet vårt.
             </p>
-            <a
-              href={company.phoneHref}
-              className="group inline-flex items-center gap-3 border-b border-ink pb-1 text-sm font-semibold tracking-wide text-ink"
-            >
-              Fortell oss hva du ser etter – {company.phoneDisplay}
-              <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
+            <div className="pt-3">
+              <ButtonLink href={company.phoneHref}>Fortell oss hva du ser etter – {company.phoneDisplay}</ButtonLink>
+            </div>
           </div>
         </div>
       </div>

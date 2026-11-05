@@ -2,27 +2,28 @@
 
 :root {
   /* Brand palette — rebrand here only */
-  --ag-ink: #0a0a0b;
-  --ag-carbon: #121214;
-  --ag-graphite: #1c1c1f;
-  --ag-line-dark: #2a2a2e;
-  --ag-bone: #f3efe8;
-  --ag-paper: #faf8f4;
-  --ag-line-light: #ddd6ca;
-  --ag-stone: #aaa59c;
-  --ag-stone-dark: #5c5850;
+  --ag-ink: #111214;
+  --ag-carbon: #1b1c1f;
+  --ag-line-dark: #303236;
+  --ag-paper: #f3f3f1;
+  --ag-surface: #ffffff;
+  --ag-line-light: #d8d9d5;
+  --ag-stone: #a0a2a7;
+  --ag-stone-dark: #55585d;
   --ag-red: #d8232a;
-  --ag-red-bright: #ff5a5f;
+  --ag-red-bright: #ff4d52;
   --ag-red-deep: #b01b21;
+
+  --ag-display-stretch: 82%;
+  --ag-display-weight: 720;
 }
 
 @theme inline {
   --color-ink: var(--ag-ink);
   --color-carbon: var(--ag-carbon);
-  --color-graphite: var(--ag-graphite);
   --color-line-dark: var(--ag-line-dark);
-  --color-bone: var(--ag-bone);
   --color-paper: var(--ag-paper);
+  --color-surface: var(--ag-surface);
   --color-line-light: var(--ag-line-light);
   --color-stone: var(--ag-stone);
   --color-stone-dark: var(--ag-stone-dark);
@@ -30,32 +31,37 @@
   --color-brand-bright: var(--ag-red-bright);
   --color-brand-deep: var(--ag-red-deep);
 
-  --font-sans: var(--font-inter-tight);
-  --font-display: var(--font-instrument-serif);
+  --font-sans: var(--font-archivo);
 
-  --text-display-xl: clamp(3.25rem, 9vw, 8.5rem);
-  --text-display-xl--line-height: 0.92;
-  --text-display-lg: clamp(2.5rem, 6vw, 5.5rem);
-  --text-display-lg--line-height: 0.98;
-  --text-display-md: clamp(2rem, 4vw, 3.5rem);
-  --text-display-md--line-height: 1.04;
-  --text-eyebrow: 0.75rem;
-  --text-eyebrow--line-height: 1;
+  --text-display-xl: clamp(3rem, 8.5vw, 7.75rem);
+  --text-display-xl--line-height: 0.9;
+  --text-display-lg: clamp(2.25rem, 5vw, 4.5rem);
+  --text-display-lg--line-height: 0.95;
+  --text-display-md: clamp(1.75rem, 3vw, 2.75rem);
+  --text-display-md--line-height: 1;
+  --text-display-sm: clamp(1.375rem, 2vw, 1.75rem);
+  --text-display-sm--line-height: 1.1;
 
-  --tracking-eyebrow: 0.22em;
-  --tracking-display: -0.02em;
+  --tracking-display: -0.015em;
 
-  --radius-card: 0.25rem;
-  --radius-pill: 999px;
+  --radius-card: 2px;
+  --radius-control: 2px;
 
   --container-site: 88rem;
 
-  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@utility font-display {
+  font-family: var(--font-sans);
+  font-stretch: var(--ag-display-stretch);
+  font-weight: var(--ag-display-weight);
+  letter-spacing: var(--tracking-display);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -65,16 +71,21 @@ html {
 }
 
 body {
-  background: var(--ag-ink);
-  color: var(--ag-bone);
+  background: var(--ag-paper);
+  color: var(--ag-ink);
 }
 
 ::selection {
   background: var(--ag-red);
-  color: var(--ag-paper);
+  color: var(--ag-surface);
 }
 
 :focus-visible {
-  outline: 2px solid var(--ag-red-bright);
+  outline: 2px solid var(--ag-red);
   outline-offset: 3px;
+}
+
+.bg-ink :focus-visible,
+.bg-carbon :focus-visible {
+  outline-color: var(--ag-red-bright);
 }

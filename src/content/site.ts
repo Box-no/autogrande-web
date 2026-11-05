@@ -214,20 +214,32 @@ export const team = [
     role: "Selger / Daglig leder",
     phone: "97 66 63 80",
     email: "magnus@autogrande.no",
+    image: "/images/team/magnus-melfald.webp",
   },
   {
     name: "Bård Eikenes",
     role: "Selger / Taksering",
     phone: "48 05 43 31",
     email: "bard@autogrande.no",
+    image: "/images/team/bard-eikenes.webp",
   },
-  { name: "Aina Grande Melfald", role: "Eier / Regnskapsmedarbeider" },
-  { name: "Emma Grande Melfald", role: "Foto / Annonsering", email: "emma@autogrande.no" },
-  { name: "Ionut Radu", role: "Bilklargjører" },
-  { name: "Harald Melfald", role: "Regnskapsmedarbeider" },
+  {
+    name: "Aina Grande Melfald",
+    role: "Eier / Regnskapsmedarbeider",
+    image: "/images/team/aina-grande-melfald.webp",
+  },
+  {
+    name: "Emma Grande Melfald",
+    role: "Foto / Annonsering",
+    email: "emma@autogrande.no",
+    image: "/images/team/emma-grande-melfald.webp",
+  },
+  { name: "Ionut Radu", role: "Bilklargjører", image: "/images/team/ionut-radu.webp" },
+  { name: "Harald Melfald", role: "Regnskapsmedarbeider", image: "/images/team/harald-melfald.webp" },
 ] as const satisfies ReadonlyArray<{
   name: string;
   role: string;
+  image: string;
   phone?: string;
   email?: string;
 }>;

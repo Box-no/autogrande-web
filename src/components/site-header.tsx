@@ -4,21 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { buttonClasses } from "@/components/button-link";
 import { Logo } from "@/components/logo";
 import { company, navItems } from "@/content/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const onHome = pathname === "/";
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -27,29 +19,27 @@ export function SiteHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const solid = !onHome || scrolled || open;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        solid ? "border-b border-line-dark bg-ink/95 backdrop-blur-md" : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-site items-center justify-between gap-6 px-5 md:px-10">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line-dark bg-ink text-paper">
+      <div className="mx-auto flex h-18 max-w-site items-center justify-between gap-6 px-5 md:px-10">
         <Link href="/" className="shrink-0" aria-label="AutoGrande – forsiden">
-          <Logo className="h-auto w-36 md:w-44" />
+          <Logo className="h-auto w-36 md:w-40" />
         </Link>
 
-        <nav aria-label="Hovedmeny" className="hidden lg:block">
-          <ul className="flex items-center gap-8 text-sm">
+        <nav aria-label="Hovedmeny" className="hidden h-full lg:block">
+          <ul className="flex h-full items-stretch gap-7 text-sm font-medium">
             {navItems.map((item) => {
-              const active = pathname === item.href;
+              const active = isActive(item.href);
               return (
-                <li key={item.href}>
+                <li key={item.href} className="flex">
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={active ? "text-bone" : "text-bone/70 transition-colors hover:text-bone"}
+                    className={`relative flex items-center transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] ${
+                      active ? "text-paper after:bg-brand" : "text-stone hover:text-paper after:bg-transparent"
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -60,15 +50,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href={company.phoneHref}
-            className="hidden rounded-pill border border-bone/25 px-5 py-2.5 text-sm font-medium transition-colors hover:border-bone hover:bg-bone hover:text-ink sm:inline-flex"
-          >
-            {company.phoneDisplay}
-          </a>
+          <div className="hidden md:block">
+            <a href={company.phoneHref} className={`${buttonClasses("primary")} py-3 whitespace-nowrap`}>
+              Ring {company.phoneDisplay}
+            </a>
+          </div>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-pill border border-bone/25 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-control border-2 border-line-dark lg:hidden"
             aria-expanded={open}
             aria-controls="mobilmeny"
             aria-label={open ? "Lukk meny" : "Åpne meny"}
@@ -76,10 +65,10 @@ export function SiteHeader() {
           >
             <span aria-hidden="true" className="relative block h-3 w-5">
               <span
-                className={`absolute left-0 h-px w-5 bg-bone transition-transform duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`}
+                className={`absolute left-0 h-0.5 w-5 bg-paper transition-transform duration-200 ${open ? "top-1.5 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 h-px w-5 bg-bone transition-transform duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`}
+                className={`absolute left-0 h-0.5 w-5 bg-paper transition-transform duration-200 ${open ? "top-1.5 -rotate-45" : "top-3"}`}
               />
             </span>
           </button>
@@ -92,29 +81,32 @@ export function SiteHeader() {
             id="mobilmeny"
             aria-label="Mobilmeny"
             className="border-t border-line-dark bg-ink lg:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
           >
-            <ul className="flex flex-col px-5 py-6">
+            <ul className="flex flex-col px-5 py-4">
               {navItems.map((item) => {
-                const active = pathname === item.href;
+                const active = isActive(item.href);
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       onClick={() => setOpen(false)}
-                      className={`block border-b border-line-dark py-4 font-display text-3xl ${active ? "text-bone" : "text-bone/70"}`}
+                      className={`flex items-center gap-3 border-b border-line-dark py-4 font-display text-display-sm ${
+                        active ? "text-paper" : "text-stone"
+                      }`}
                     >
+                      {active ? <span aria-hidden="true" className="size-2 bg-brand" /> : null}
                       {item.label}
                     </Link>
                   </li>
                 );
               })}
-              <li className="pt-6">
-                <a href={company.phoneHref} className="text-lg text-brand-bright">
+              <li className="pt-5 pb-2">
+                <a href={company.phoneHref} className={`${buttonClasses("primary")} w-full`}>
                   Ring {company.phoneDisplay}
                 </a>
               </li>

@@ -1,32 +1,22 @@
 import Image from "next/image";
-import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { journeySteps } from "@/content/site";
 
 export function Journey() {
   return (
-    <section aria-labelledby="reisen-tittel" className="bg-ink py-24 md:py-36">
-      <div className="mx-auto grid max-w-site gap-16 px-5 md:px-10 lg:grid-cols-12">
+    <section aria-labelledby="reisen-tittel" className="bg-paper py-20 md:py-28">
+      <div className="mx-auto grid max-w-site gap-14 px-5 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-32">
-            <SectionHeading
-              id="reisen-tittel"
-              eyebrow="Reisen fra Tyskland"
-              title={
-                <>
-                  Hentet i Tyskland.
-                  <span className="block italic text-stone">Kjørt hjem av oss.</span>
-                </>
-              }
-            >
+          <div className="lg:sticky lg:top-28">
+            <SectionHeading id="reisen-tittel" eyebrow="Reisen fra Tyskland" title="Hentet i Tyskland. Kjørt hjem av oss.">
               <p>
                 Vi snakker som bilentusiaster, ikke selgere. Spør oss gjerne hvor bilen kommer fra og hva vi fant da vi
                 gikk den etter – vi forteller det rett ut.
               </p>
             </SectionHeading>
 
-            <figure className="mt-12">
-              <div className="relative aspect-video overflow-hidden rounded-card bg-carbon">
+            <figure className="mt-10">
+              <div className="relative aspect-3/2 overflow-hidden rounded-card bg-line-light">
                 <Image
                   src="https://cdn.autonet.no/ads-87243/c-26e33fc6EGM05200.jpg"
                   alt="Svart Porsche 911 Carrera fra 2000 foran AutoGrandes lokaler i Skien"
@@ -36,23 +26,26 @@ export function Journey() {
                   className="object-cover object-top"
                 />
               </div>
-              <figcaption className="mt-4 text-sm text-stone">
+              <figcaption className="mt-3 text-sm text-stone-dark">
                 Porsche 911 Carrera (2000), på lager hos oss i Skien.
               </figcaption>
             </figure>
           </div>
         </div>
 
-        <ol className="lg:col-span-6 lg:col-start-7">
+        <ol className="space-y-4 lg:col-span-6 lg:col-start-7">
           {journeySteps.map((step, i) => (
-            <li key={step.title} className="border-t border-line-dark py-12 first:border-t-0 first:pt-0 lg:first:pt-4">
-              <Reveal>
-                <p aria-hidden="true" className="font-display text-xl italic text-brand-bright">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-4 font-display text-display-md tracking-display">{step.title}</h3>
-                <p className="mt-5 max-w-lg text-lg leading-relaxed text-stone">{step.body}</p>
-              </Reveal>
+            <li key={step.title} className="flex gap-6 rounded-card bg-surface p-7 md:gap-8 md:p-9">
+              <span
+                aria-hidden="true"
+                className="flex size-10 shrink-0 items-center justify-center rounded-control bg-ink font-display text-lg text-paper tabular-nums"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <h3 className="font-display text-display-sm">{step.title}</h3>
+                <p className="mt-3 leading-relaxed text-stone-dark">{step.body}</p>
+              </div>
             </li>
           ))}
         </ol>

@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter_Tight } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { MotionProvider } from "@/components/motion-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/content/site";
 import "./globals.css";
 
-const interTight = Inter_Tight({
-  variable: "--font-inter-tight",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -51,12 +44,12 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nb-NO" className={`${interTight.variable} ${instrumentSerif.variable} antialiased`}>
-      <body className="bg-ink font-sans text-bone">
+    <html lang="nb-NO" className={`${archivo.variable} antialiased`}>
+      <body className="bg-paper font-sans text-ink">
         <MotionProvider>
           <a
             href="#innhold"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-pill focus:bg-bone focus:px-5 focus:py-3 focus:text-ink"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-control focus:bg-surface focus:px-5 focus:py-3 focus:font-semibold focus:text-ink"
           >
             Hopp til innhold
           </a>

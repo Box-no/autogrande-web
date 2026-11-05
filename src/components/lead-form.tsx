@@ -2,20 +2,23 @@
 
 import { useActionState, useId } from "react";
 import { submitLead, type LeadState } from "@/app/actions/lead";
+import { buttonClasses } from "@/components/button-link";
 import type { LeadFormConfig, LeadField } from "@/content/forms";
 
 const initialState: LeadState = { status: "idle", message: "", fieldErrors: {} };
 
 const toneStyles = {
   dark: {
-    label: "text-stone",
-    input: "border-line-dark bg-carbon text-bone placeholder:text-stone/60 focus:border-bone",
+    label: "text-paper",
+    muted: "text-stone",
+    input: "border-line-dark bg-ink text-paper placeholder:text-stone/70 focus:border-paper",
     error: "text-brand-bright",
     errorBorder: "border-brand-bright",
   },
   light: {
-    label: "text-stone-dark",
-    input: "border-line-light bg-paper text-ink placeholder:text-stone-dark/60 focus:border-ink",
+    label: "text-ink",
+    muted: "text-stone-dark",
+    input: "border-line-light bg-surface text-ink placeholder:text-stone-dark/70 focus:border-ink",
     error: "text-brand-deep",
     errorBorder: "border-brand-deep",
   },
@@ -28,15 +31,14 @@ type LeadFormProps = {
   tone?: Tone;
 };
 
-export function LeadForm({ config, tone = "dark" }: LeadFormProps) {
+export function LeadForm({ config, tone = "light" }: LeadFormProps) {
   const [state, formAction, pending] = useActionState(submitLead.bind(null, config.kind), initialState);
   const formId = useId();
   const styles = toneStyles[tone];
 
   if (state.status === "success") {
     return (
-      <div role="status" className="flex min-h-64 flex-col justify-center gap-6">
-        <span aria-hidden="true" className="h-px w-10 bg-brand" />
+      <div role="status" className="flex min-h-64 flex-col justify-center gap-5 border-l-4 border-brand pl-6">
         <p className="font-display text-display-md">{state.message}</p>
       </div>
     );
@@ -61,15 +63,10 @@ export function LeadForm({ config, tone = "dark" }: LeadFormProps) {
       </div>
 
       <div className="col-span-2 flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
-        <button
-          type="submit"
-          disabled={pending}
-          className="inline-flex items-center justify-center gap-3 rounded-pill bg-brand px-8 py-4 text-sm font-semibold tracking-wide text-paper transition-colors hover:bg-brand-deep disabled:opacity-60"
-        >
+        <button type="submit" disabled={pending} className={`${buttonClasses("primary")} disabled:opacity-60`}>
           {pending ? "Sender …" : config.submitLabel}
-          <span aria-hidden="true">→</span>
         </button>
-        <p aria-live="polite" className={`text-sm ${state.status === "error" ? styles.error : styles.label}`}>
+        <p aria-live="polite" className={`text-sm ${state.status === "error" ? styles.error : styles.muted}`}>
           {state.message}
         </p>
       </div>
@@ -87,7 +84,7 @@ type FieldProps = {
 
 function Field({ field, id, error, defaultValue, tone }: FieldProps) {
   const styles = toneStyles[tone];
-  const base = `w-full rounded-card border px-4 py-3.5 text-base outline-none transition-colors ${styles.input} ${
+  const base = `w-full rounded-control border-2 px-4 py-3 text-base outline-none transition-colors ${styles.input} ${
     error ? styles.errorBorder : ""
   }`;
   const errorId = `${id}-feil`;
@@ -102,9 +99,9 @@ function Field({ field, id, error, defaultValue, tone }: FieldProps) {
 
   return (
     <div className={field.span === "half" ? "col-span-2 sm:col-span-1" : "col-span-2"}>
-      <label htmlFor={id} className={`mb-2 block text-xs font-medium uppercase tracking-eyebrow ${styles.label}`}>
+      <label htmlFor={id} className={`mb-2 block text-sm font-semibold ${styles.label}`}>
         {field.label}
-        {field.required ? <span aria-hidden="true"> *</span> : null}
+        {field.required ? <span aria-hidden="true" className="text-brand"> *</span> : null}
       </label>
       {field.type === "select" ? (
         <select {...shared} className={base}>
