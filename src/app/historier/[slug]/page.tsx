@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,7 +19,21 @@ export async function generateMetadata({ params }: PageProps<"/historier/[slug]"
   return pageMetadata(story.title, story.standfirst, `/historier/${story.slug}`);
 }
 
-export default async function StoryPage({ params }: PageProps<"/historier/[slug]">) {
+export default function StoryPage({ params }: PageProps<"/historier/[slug]">) {
+  return (
+    <Suspense
+      fallback={
+        <PageFrame>
+          <p className="mx-auto max-w-site px-5 py-24 text-stone-dark md:px-10">Laster historien …</p>
+        </PageFrame>
+      }
+    >
+      <StoryDetail params={params} />
+    </Suspense>
+  );
+}
+
+async function StoryDetail({ params }: { params: PageProps<"/historier/[slug]">["params"] }) {
   const { slug } = await params;
   const story = getStory(slug);
   if (!story) notFound();

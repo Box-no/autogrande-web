@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SectionHeading } from "@/components/section-heading";
 import { services } from "@/content/site";
 
@@ -15,12 +16,12 @@ export function Services() {
             >
               <h3 className="font-display text-display-sm">{service.title}</h3>
               <p className="mt-4 flex-1 leading-relaxed text-stone-dark">{service.body}</p>
-              <a
+              <Link
                 href={service.href}
                 className="mt-8 w-fit text-sm font-semibold text-brand after:absolute after:inset-0 group-hover:text-brand-deep"
               >
                 {service.cta}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

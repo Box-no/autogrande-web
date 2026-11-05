@@ -1,5 +1,3 @@
-export const legacySiteUrl = "https://autogrande.no";
-
 export const company = {
   name: "AutoGrande AS",
   tagline: "Hver bil har en historie – vi henter den fra Tyskland til deg.",
@@ -80,7 +78,7 @@ export const featuredCars: FeaturedCar[] = [
     km: "44 459 km",
     price: "kr 989 000",
     image: "https://cdn.autonet.no/ads-12154/b8a90d4fIMG_3715.JPG",
-    href: `${legacySiteUrl}/biler/238139-mercedes-benz-sl63-2013`,
+    href: "/biler/238139-mercedes-benz-sl63-2013",
   },
   {
     id: "237686",
@@ -90,7 +88,7 @@ export const featuredCars: FeaturedCar[] = [
     km: "113 538 km",
     price: "kr 779 000",
     image: "https://cdn.autonet.no/ads-86838/c-8b21b671EGM04900.jpg",
-    href: `${legacySiteUrl}/biler/237686-bentley-continental-gt-2013`,
+    href: "/biler/237686-bentley-continental-gt-2013",
   },
   {
     id: "254716",
@@ -100,7 +98,7 @@ export const featuredCars: FeaturedCar[] = [
     km: "77 476 km",
     price: "kr 749 000",
     image: "https://cdn.autonet.no/ads-90683/c-3a7cf4d1EGM06300.jpg",
-    href: `${legacySiteUrl}/biler/254716-mercedes-benz-eqe-500-suv-2024`,
+    href: "/biler/254716-mercedes-benz-eqe-500-suv-2024",
   },
   {
     id: "256924",
@@ -110,7 +108,7 @@ export const featuredCars: FeaturedCar[] = [
     km: "48 661 km",
     price: "kr 749 000",
     image: "https://cdn.autonet.no/ads-73000/c-410b4550EGM06200.jpg",
-    href: `${legacySiteUrl}/biler/256924-bmw-m6-2015`,
+    href: "/biler/256924-bmw-m6-2015",
   },
   {
     id: "253838",
@@ -120,14 +118,14 @@ export const featuredCars: FeaturedCar[] = [
     km: "131 711 km",
     price: "kr 429 000",
     image: "https://cdn.autonet.no/ads-87243/c-26e33fc6EGM05200.jpg",
-    href: `${legacySiteUrl}/biler/253838-porsche-911-carrera-2000`,
+    href: "/biler/253838-porsche-911-carrera-2000",
   },
 ];
 
 export const heroCar = {
   label: "Mercedes-Benz C63 · 2015 · 83 162 km",
   price: "kr 759 000",
-  href: `${legacySiteUrl}/biler/251612-mercedes-benz-c63-2015`,
+  href: "/biler/251612-mercedes-benz-c63-2015",
   image: "/images/hero-c63-amg.jpg",
   alt: "Svart Mercedes-Benz C63 med røde bremsekalipere, fotografert foran AutoGrandes lokaler i Skien",
 } as const;
@@ -185,25 +183,25 @@ export const services = [
   {
     title: "Finansiering",
     body: "Lån eller leasing gjennom Santander Consumer Bank AS og AS Financiering.",
-    href: `${legacySiteUrl}/finansiering`,
+    href: "/finansiering",
     cta: "Søk finansiering",
   },
   {
     title: "Innbytte",
     body: "På tide å bytte bil? Vi tar gjerne bilen din i innbytte! Send oss opplysningene, så sender vi deg et tilbud så fort som mulig.",
-    href: `${legacySiteUrl}/innbytte`,
+    href: "/innbytte",
     cta: "Få innbyttetilbud",
   },
   {
     title: "Formidlingssalg",
     body: "Vi selger bilen din for en fastpris på 25 000 kr*. Takst, foto, annonse, visning og papirarbeid er inkludert.",
-    href: `${legacySiteUrl}/formidlingssalg`,
+    href: "/formidlingssalg",
     cta: "Les vilkårene",
   },
   {
     title: "Reklamasjon",
     body: "Vi tar din reklamasjon på alvor. Vi bestreber oss på å svare alle innen 7 dager – haster det, skriv det i beskrivelsen.",
-    href: `${legacySiteUrl}/reklamasjon`,
+    href: "/reklamasjon",
     cta: "Meld inn sak",
   },
 ] as const;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { company, legacySiteUrl, navItems, openingHours } from "@/content/site";
+import { company, navItems, openingHours } from "@/content/site";
 
 const linkClass = "underline-offset-4 hover:text-paper hover:underline";
 
@@ -74,14 +74,24 @@ export function SiteFooter() {
                 </li>
               ))}
               <li>
-                <a href={`${legacySiteUrl}/finansiering`} className={linkClass}>
+                <Link href="/finansiering" className={linkClass}>
                   Finansiering
-                </a>
+                </Link>
               </li>
               <li>
-                <a href={`${legacySiteUrl}/reklamasjon`} className={linkClass}>
+                <Link href="/innbytte" className={linkClass}>
+                  Innbytte
+                </Link>
+              </li>
+              <li>
+                <Link href="/formidlingssalg" className={linkClass}>
+                  Formidlingssalg
+                </Link>
+              </li>
+              <li>
+                <Link href="/reklamasjon" className={linkClass}>
                   Reklamasjon
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

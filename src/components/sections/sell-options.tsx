@@ -1,6 +1,5 @@
 import { ButtonLink } from "@/components/button-link";
 import { SectionHeading } from "@/components/section-heading";
-import { legacySiteUrl } from "@/content/site";
 
 const consignmentIncludes = [
   "Intern takstrapport av bilens tilstand",
@@ -26,7 +25,7 @@ export function SellOptions() {
               fort som mulig.
             </p>
             <div className="mt-8">
-              <ButtonLink href={`${legacySiteUrl}/innbytte`} variant="secondary">
+              <ButtonLink href="/innbytte" variant="secondary">
                 Få innbyttetilbud
               </ButtonLink>
             </div>
@@ -54,7 +53,7 @@ export function SellOptions() {
               forhånd, slik at ingen får en ubehagelig overraskelse.
             </p>
             <div className="mt-8">
-              <ButtonLink href={`${legacySiteUrl}/formidlingssalg`} variant="secondary">
+              <ButtonLink href="/formidlingssalg" variant="secondary">
                 Start formidlingssalg
               </ButtonLink>
             </div>

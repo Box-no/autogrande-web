@@ -2,12 +2,12 @@ import { PageFrame } from "@/components/page-frame";
 import { Brands } from "@/components/sections/brands";
 import { FeaturedCars } from "@/components/sections/featured-cars";
 import { Journey } from "@/components/sections/journey";
-import { legacySiteUrl } from "@/content/site";
+import { cars } from "@/content/cars";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata(
   "Biler på lager",
-  "Utvalgte Audi, BMW og Mercedes-Benz hos AutoGrande i Skien. Hentet og kjørt hjem fra Tyskland av oss, med garanti.",
+  "Audi, BMW, Mercedes-Benz og flere hos AutoGrande i Skien. Hentet og kjørt hjem fra Tyskland av oss, med garanti.",
   "/biler",
 );
 
@@ -16,8 +16,11 @@ export default function BilerPage() {
     <PageFrame>
       <FeaturedCars
         headingLevel="h1"
-        listingHref={`${legacySiteUrl}/biler`}
-        listingLabel="Alle annonser"
+        cars={cars}
+        eyebrow="På lager"
+        title="Biler på lager."
+        intro="Alle bilene som står annonsert hos oss akkurat nå."
+        showListingLink={false}
       />
       <Journey />
       <Brands />

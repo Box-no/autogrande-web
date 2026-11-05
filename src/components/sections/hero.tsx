@@ -1,8 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink } from "@/components/button-link";
+import { getCar } from "@/content/cars";
 import { company, heroCar } from "@/content/site";
 
 export function Hero() {
+  const pictured = getCar("251612-mercedes-benz-c63-2015");
   return (
     <section id="top" aria-labelledby="hero-tittel" className="bg-paper pt-6 pb-4 md:pt-10">
       <div className="mx-auto grid max-w-site gap-4 px-5 md:px-10 lg:grid-cols-12">
@@ -25,8 +28,13 @@ export function Hero() {
             <p className="mt-4 max-w-md text-surface/85">
               Selvstendig importør siden 2016. Vi finner, henter og kjører bilene hjem selv – og garantien følger med.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
               <ButtonLink href="/biler">Se bilene på lager</ButtonLink>
+              {pictured ? (
+                <Link href={`/biler/${pictured.slug}`} className="text-sm font-semibold text-surface underline-offset-4 hover:underline">
+                  {pictured.title} · {pictured.price}
+                </Link>
+              ) : null}
             </div>
           </div>
         </div>
