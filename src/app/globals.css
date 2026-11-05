@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand palette — rebrand here only */
+  --ag-ink: #0a0a0b;
+  --ag-carbon: #121214;
+  --ag-graphite: #1c1c1f;
+  --ag-line-dark: #2a2a2e;
+  --ag-bone: #f3efe8;
+  --ag-paper: #faf8f4;
+  --ag-line-light: #ddd6ca;
+  --ag-stone: #aaa59c;
+  --ag-stone-dark: #5c5850;
+  --ag-red: #d8232a;
+  --ag-red-bright: #ff5a5f;
+  --ag-red-deep: #b01b21;
+}
+
+@theme inline {
+  --color-ink: var(--ag-ink);
+  --color-carbon: var(--ag-carbon);
+  --color-graphite: var(--ag-graphite);
+  --color-line-dark: var(--ag-line-dark);
+  --color-bone: var(--ag-bone);
+  --color-paper: var(--ag-paper);
+  --color-line-light: var(--ag-line-light);
+  --color-stone: var(--ag-stone);
+  --color-stone-dark: var(--ag-stone-dark);
+  --color-brand: var(--ag-red);
+  --color-brand-bright: var(--ag-red-bright);
+  --color-brand-deep: var(--ag-red-deep);
+
+  --font-sans: var(--font-inter-tight);
+  --font-display: var(--font-instrument-serif);
+
+  --text-display-xl: clamp(3.25rem, 9vw, 8.5rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-lg: clamp(2.5rem, 6vw, 5.5rem);
+  --text-display-lg--line-height: 0.98;
+  --text-display-md: clamp(2rem, 4vw, 3.5rem);
+  --text-display-md--line-height: 1.04;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+
+  --tracking-eyebrow: 0.22em;
+  --tracking-display: -0.02em;
+
+  --radius-card: 0.25rem;
+  --radius-pill: 999px;
+
+  --container-site: 88rem;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--ag-ink);
+  color: var(--ag-bone);
+}
+
+::selection {
+  background: var(--ag-red);
+  color: var(--ag-paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ag-red-bright);
+  outline-offset: 3px;
+}
