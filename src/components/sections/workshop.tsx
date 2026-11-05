@@ -4,12 +4,13 @@ import { SectionHeading } from "@/components/section-heading";
 import { leadForms } from "@/content/forms";
 import { workshopPromises, workshopServices } from "@/content/site";
 
-export function Workshop() {
+export function Workshop({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
     <section id="verksted" aria-labelledby="verksted-tittel" className="bg-paper py-24 text-ink md:py-36">
       <div className="mx-auto max-w-site px-5 md:px-10">
         <SectionHeading
           id="verksted-tittel"
+          level={headingLevel}
           eyebrow="Verksted i Grenland"
           tone="light"
           title={
@@ -22,7 +23,7 @@ export function Workshop() {
             Vi gjør det som skal gjøres, til prisen vi ble enige om. Hvis noe blir dyrere, får du beskjed før vi går
             videre.
           </p>
-          <p className="mt-4 text-base">[PLACEHOLDER: merker og tjenester verkstedet tar imot]</p>
+          <p className="mt-4 text-base">[PLACEHOLDER: hvilke merker verkstedet tar imot]</p>
         </SectionHeading>
 
         <ul className="mt-16 grid gap-px overflow-hidden rounded-card border border-line-light bg-line-light md:grid-cols-3">

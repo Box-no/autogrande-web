@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { company, legacySiteUrl, navItems } from "@/content/site";
 
@@ -11,7 +12,9 @@ export function SiteFooter() {
 
         <div className="mt-16 grid gap-12 border-t border-line-dark pt-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo className="h-auto w-40" />
+            <Link href="/" aria-label="AutoGrande – forsiden">
+              <Logo className="h-auto w-40" />
+            </Link>
             <p className="mt-6 text-sm leading-relaxed text-stone">
               {company.name}
               <br />
@@ -23,9 +26,9 @@ export function SiteFooter() {
             <ul className="grid grid-cols-2 gap-3 text-sm text-stone">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="hover:text-bone">
+                  <Link href={item.href} className="hover:text-bone">
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li>

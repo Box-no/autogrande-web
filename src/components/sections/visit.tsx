@@ -1,13 +1,14 @@
 import { SectionHeading } from "@/components/section-heading";
 import { company, openingHours } from "@/content/site";
 
-export function Visit() {
+export function Visit({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
     <section id="kontakt" aria-labelledby="kontakt-tittel" className="bg-ink py-24 md:py-36">
       <div className="mx-auto grid max-w-site gap-16 px-5 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <SectionHeading
             id="kontakt-tittel"
+            level={headingLevel}
             eyebrow="Besøk oss"
             title={
               <>

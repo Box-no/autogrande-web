@@ -6,13 +6,14 @@ function telHref(phone: string) {
   return `tel:+47${phone.replace(/\s/g, "")}`;
 }
 
-export function Team() {
+export function Team({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
     <section id="om-oss" aria-labelledby="om-oss-tittel" className="bg-bone py-24 text-ink md:py-36">
       <div className="mx-auto grid max-w-site gap-16 px-5 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <SectionHeading
             id="om-oss-tittel"
+            level={headingLevel}
             eyebrow="Om oss"
             tone="light"
             title={
@@ -22,12 +23,19 @@ export function Team() {
             }
           >
             <p>
-              Eierne av AutoGrande har drevet med salg og import av bil siden 2007. AutoGrande AS ble etablert 1. januar
-              2016, og har siden levert i snitt 300 biler hvert år.
+              Eierne av AutoGrande AS har drevet med salg og import av bil siden 2007. AutoGrande AS ble etablert
+              1. januar 2016, og har siden den gang solgt og levert i snitt 300 biler hvert år.
             </p>
             <p className="mt-4">
-              Visjonen er enkel: biler med høy kvalitet, godt utstyrt, til riktig pris – uten kostbare mellomledd.
+              Vår visjon er å selge biler med høy kvalitet uten kostbare mellomledd. Vi har fokus på at bilene våre skal
+              være meget godt utstyrte til riktig pris. Vi har kompetanse på hvilke utstyrskombinasjoner som er mulige å
+              få, og det er en av våre høyeste prioriteringer når vi importerer biler.
             </p>
+            <p className="mt-4">
+              Vi leverer kvalitetsbiler til den kvalitetsbevisste forbrukeren, og hjelper mer enn gjerne til med å
+              konfigurere din drømmebil. Du er hjertelig velkommen til å besøke oss i Håvundvegen 214 i Skien.
+            </p>
+            <p className="mt-4">Vi som jobber og brenner for AutoGrande AS er:</p>
           </SectionHeading>
         </div>
 

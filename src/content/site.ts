@@ -23,11 +23,33 @@ export const openingHours = [
 ] as const;
 
 export const navItems = [
-  { label: "Biler på lager", href: `${legacySiteUrl}/biler` },
-  { label: "Selg elbilen", href: "#selg-elbil" },
-  { label: "Verksted", href: "#verksted" },
-  { label: "Om oss", href: "#om-oss" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Biler på lager", href: "/biler" },
+  { label: "Selg elbilen", href: "/selg-elbil" },
+  { label: "Verksted", href: "/verksted" },
+  { label: "Om oss", href: "/om-oss" },
+  { label: "Historier", href: "/historier" },
+  { label: "Kontakt", href: "/kontakt" },
+] as const;
+
+export const tracks = [
+  {
+    href: "/biler",
+    eyebrow: "Biler fra Tyskland",
+    title: "Hentet og kjørt hjem av oss.",
+    body: "Audi, BMW og Mercedes-Benz, funnet gjennom kontaktnettet vårt og levert med garanti.",
+  },
+  {
+    href: "/selg-elbil",
+    eyebrow: "Vi kjøper din elbil",
+    title: "Bud direkte, uten mellomledd.",
+    body: "Send reg.nr. og km-stand. Du får bud fra oss, og kan sammenligne med Nettbil.",
+  },
+  {
+    href: "/verksted",
+    eyebrow: "Verksted i Grenland",
+    title: "Avtalt pris. Ingen overraskelser.",
+    body: "Vi gjør det vi ble enige om. Blir noe dyrere, får du beskjed før vi går videre.",
+  },
 ] as const;
 
 export const trustFacts = [
@@ -113,7 +135,7 @@ export const heroCar = {
 export const journeySteps = [
   {
     title: "Vi finner bilen",
-    body: "Gjennom et kontaktnett vi har bygget over hele Tyskland siden 2007. Vi ser etter riktig utstyrsnivå – ikke bare riktig pris.",
+    body: "Gjennom et solid kontaktnett over hele Tyskland, bygget opp gjennom en årrekke. Vi ser etter et høyt og ettertraktet utstyrsnivå – ikke bare riktig pris.",
   },
   {
     title: "Vi henter den selv",
@@ -125,7 +147,7 @@ export const journeySteps = [
   },
   {
     title: "Garantien følger med",
-    body: "Derfor leveres nesten alle bilene vi annonserer med minimum ett års garanti, med mulighet for utvidelse.",
+    body: "Derfor leveres nesten alle bilene vi annonserer med minimum ett års garanti, med mulighet for utvidelse etter ønske.",
   },
 ] as const;
 
@@ -148,8 +170,8 @@ export const workshopPromises = [
     body: "Finner vi noe mer, får du beskjed før vi går videre. Ingen overraskelser på fakturaen.",
   },
   {
-    title: "Uten friksjon",
-    body: "[PLACEHOLDER: hva vi kan love – nettbooking, SMS-oppdateringer, hente og bringe, leiebil]",
+    title: "Rett på sak",
+    body: "Du snakker med folk som kan bil. Vi forklarer hva som må gjøres nå, og hva som trygt kan vente til neste gang.",
   },
 ] as const;
 
@@ -168,7 +190,7 @@ export const services = [
   },
   {
     title: "Innbytte",
-    body: "På tide å bytte bil? Vi tar gjerne bilen din i innbytte og sender deg et tilbud.",
+    body: "På tide å bytte bil? Vi tar gjerne bilen din i innbytte! Send oss opplysningene, så sender vi deg et tilbud så fort som mulig.",
     href: `${legacySiteUrl}/innbytte`,
     cta: "Få innbyttetilbud",
   },
@@ -180,7 +202,7 @@ export const services = [
   },
   {
     title: "Reklamasjon",
-    body: "Vi tar reklamasjoner på alvor og bestreber oss på å svare alle innen 7 dager.",
+    body: "Vi tar din reklamasjon på alvor. Vi bestreber oss på å svare alle innen 7 dager – haster det, skriv det i beskrivelsen.",
     href: `${legacySiteUrl}/reklamasjon`,
     cta: "Meld inn sak",
   },

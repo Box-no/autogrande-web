@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { journeySteps } from "@/content/site";
@@ -19,14 +20,24 @@ export function Journey() {
               }
             >
               <p>
-                Vi snakker som bilentusiaster, ikke selgere. Derfor forteller vi hvor bilen kommer fra, hvem som hentet
-                den – og hva vi fant da vi gikk den etter.
+                Vi snakker som bilentusiaster, ikke selgere. Spør oss gjerne hvor bilen kommer fra og hva vi fant da vi
+                gikk den etter – vi forteller det rett ut.
               </p>
             </SectionHeading>
 
-            <figure className="mt-12 flex aspect-video items-center justify-center rounded-card border border-dashed border-line-dark bg-carbon p-8 text-center">
-              <figcaption className="max-w-xs text-sm leading-relaxed text-stone">
-                [PLACEHOLDER: bilde eller video fra en henting i Tyskland – by, dato og hvem som hentet]
+            <figure className="mt-12">
+              <div className="relative aspect-video overflow-hidden rounded-card bg-carbon">
+                <Image
+                  src="https://cdn.autonet.no/ads-87243/c-26e33fc6EGM05200.jpg"
+                  alt="Svart Porsche 911 Carrera fra 2000 foran AutoGrandes lokaler i Skien"
+                  fill
+                  quality={75}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <figcaption className="mt-4 text-sm text-stone">
+                Porsche 911 Carrera (2000), på lager hos oss i Skien.
               </figcaption>
             </figure>
           </div>

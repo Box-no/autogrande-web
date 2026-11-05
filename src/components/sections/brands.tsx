@@ -29,10 +29,20 @@ export function Brands() {
           </p>
           <div className="space-y-6 text-lg leading-relaxed text-stone-dark lg:col-span-5 lg:col-start-8">
             <p>
-              Vi har alltid biler på lager både i Norge og i Tyskland, og meget gode kontakter på Audi i Tyskland. Vi vet
-              hvilke utstyrskombinasjoner som er mulige å få – det er noe av det viktigste når vi importerer.
+              Vi har valgt å spesialisere oss på Audi, BMW og Mercedes-Benz. Gjennom en årrekke har vi opparbeidet oss
+              et solid kontaktnett over hele Tyskland. Det gjør at vi kan tilby deg kvalitet og sikkerhet, samt en bil
+              med et høyt og ettertraktet utstyrsnivå. Vi har også meget gode kontakter på Audi i Tyskland som kan
+              hjelpe deg med å skaffe drømmebilen.
             </p>
-            <p>Lave lagerkostnader og ingen kostbare mellomledd gir konkurransedyktige priser.</p>
+            <p>
+              Vi har alltid biler på lager både i Norge og i Tyskland. På den måten kan vi tilby et rikt utvalg, og
+              samtidig holde lagerkostnadene så lave som mulig – det gjør at vi kan selge bilene til enda mer
+              konkurransedyktige priser.
+            </p>
+            <p>
+              AutoGrande AS er en selvstendig importør, og bistår mer enn gjerne med å skreddersy din drømmebil gjennom
+              kontaktnettet vårt.
+            </p>
             <a
               href={company.phoneHref}
               className="group inline-flex items-center gap-3 border-b border-ink pb-1 text-sm font-semibold tracking-wide text-ink"

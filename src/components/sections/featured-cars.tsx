@@ -1,27 +1,44 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { featuredCars, legacySiteUrl, type FeaturedCar } from "@/content/site";
+import { featuredCars, type FeaturedCar } from "@/content/site";
 
-export function FeaturedCars() {
+type FeaturedCarsProps = {
+  headingLevel?: "h1" | "h2";
+  listingHref?: string;
+  listingLabel?: string;
+};
+
+export function FeaturedCars({
+  headingLevel = "h2",
+  listingHref = "/biler",
+  listingLabel = "Se alle bilene",
+}: FeaturedCarsProps) {
   const [lead, ...rest] = featuredCars;
 
   return (
     <section aria-labelledby="utvalgte-tittel" className="bg-paper py-24 text-ink md:py-36">
       <div className="mx-auto max-w-site px-5 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <SectionHeading id="utvalgte-tittel" eyebrow="Utvalgt fra lageret" title="Biler verdt å hente hjem." tone="light">
+          <SectionHeading
+            id="utvalgte-tittel"
+            level={headingLevel}
+            eyebrow="Utvalgt fra lageret"
+            title="Biler verdt å hente hjem."
+            tone="light"
+          >
             <p>Et lite utvalg av det som står på lager akkurat nå. Godt utstyrt, grundig gjennomgått og klar for neste eier.</p>
           </SectionHeading>
-          <a
-            href={`${legacySiteUrl}/biler`}
+          <Link
+            href={listingHref}
             className="group inline-flex shrink-0 items-center gap-3 border-b border-ink pb-1 text-sm font-semibold tracking-wide"
           >
-            Se hele lageret
+            {listingLabel}
             <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </a>
+          </Link>
         </div>
 
         <div className="mt-16 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-12">

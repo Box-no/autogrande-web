@@ -1,5 +1,6 @@
+import Link from "next/link";
 import { HeroMedia } from "@/components/sections/hero-media";
-import { company, heroCar, legacySiteUrl } from "@/content/site";
+import { company, heroCar } from "@/content/site";
 
 export function Hero() {
   return (
@@ -24,18 +25,18 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a
-            href={`${legacySiteUrl}/biler`}
+          <Link
+            href="/biler"
             className="inline-flex items-center justify-center gap-3 rounded-pill bg-bone px-8 py-4 text-sm font-semibold tracking-wide text-ink transition-colors hover:bg-paper"
           >
             Se bilene på lager <span aria-hidden="true">→</span>
-          </a>
-          <a
-            href="#selg-elbil"
+          </Link>
+          <Link
+            href="/selg-elbil"
             className="inline-flex items-center justify-center gap-3 rounded-pill border border-bone/30 px-8 py-4 text-sm font-semibold tracking-wide transition-colors hover:border-bone"
           >
             Få bud på elbilen din
-          </a>
+          </Link>
         </div>
 
         <div className="mt-16 flex flex-col gap-2 border-t border-bone/15 pt-6 text-sm text-bone/70 sm:flex-row sm:items-center sm:justify-between">
