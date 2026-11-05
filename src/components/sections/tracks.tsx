@@ -9,14 +9,12 @@ export function Tracks() {
           <li key={track.href}>
             <Link
               href={track.href}
-              className="group flex h-full flex-col rounded-card border-2 border-transparent bg-surface p-7 transition-colors duration-200 hover:border-ink motion-reduce:transition-none md:p-9"
+              className="group flex h-full flex-col rounded-card bg-surface p-7 shadow-card transition-transform duration-200 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:p-9"
             >
               <p className="text-sm font-semibold text-stone-dark">{track.eyebrow}</p>
               <h2 className="mt-5 font-display text-display-md text-balance">{track.title}</h2>
               <p className="mt-4 flex-1 leading-relaxed text-stone-dark">{track.body}</p>
-              <span className="mt-8 w-fit text-sm font-semibold underline decoration-brand decoration-2 underline-offset-[6px] group-hover:text-brand-deep">
-                Les mer
-              </span>
+              <span className="mt-8 w-fit text-sm font-semibold text-brand group-hover:text-brand-deep">Les mer</span>
             </Link>
           </li>
         ))}

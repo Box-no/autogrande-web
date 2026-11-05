@@ -25,7 +25,7 @@ export function Workshop({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }
 
           <ul className="mt-14 grid gap-4 md:grid-cols-3">
             {workshopPromises.map((promise) => (
-              <li key={promise.title} className="rounded-card border-t-4 border-ink bg-surface p-7 md:p-9">
+              <li key={promise.title} className="rounded-card bg-surface p-7 shadow-card md:p-9">
                 <SubHeading className="font-display text-display-sm">{promise.title}</SubHeading>
                 <p className="mt-4 leading-relaxed text-stone-dark">{promise.body}</p>
               </li>
@@ -34,24 +34,24 @@ export function Workshop({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }
         </div>
       </div>
 
-      <div className="bg-ink py-20 text-paper md:py-28">
+      <div className="bg-paper pb-16 md:pb-24">
         <div className="mx-auto grid max-w-site gap-14 px-5 md:px-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <SubHeading className="font-display text-display-md">Tjenester med fra-pris</SubHeading>
-            <dl className="mt-8 border-t-2 border-line-dark">
+            <dl className="mt-8 rounded-card bg-surface px-6 shadow-card">
               {workshopServices.map((service) => (
                 <div
                   key={service.name}
-                  className="flex items-baseline justify-between gap-6 border-b border-line-dark py-5"
+                  className="flex items-baseline justify-between gap-6 border-b border-line-light py-5 last:border-b-0"
                 >
                   <dt className="font-display text-display-sm">{service.name}</dt>
-                  <dd className="text-right text-sm text-stone tabular-nums">{service.price}</dd>
+                  <dd className="text-right text-sm text-stone-dark tabular-nums">{service.price}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div className="rounded-card bg-surface p-6 text-ink sm:p-10 lg:col-span-6 lg:col-start-7">
+          <div className="rounded-card bg-surface p-6 shadow-card sm:p-10 lg:col-span-6 lg:col-start-7">
             <SubHeading className="font-display text-display-md">Bestill time</SubHeading>
             <p className="mt-3 text-stone-dark">Vi ringer deg tilbake og avtaler tidspunkt og pris før vi starter.</p>
             <div className="mt-8">

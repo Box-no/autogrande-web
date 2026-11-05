@@ -19,7 +19,7 @@ export function SellOptions() {
         </SectionHeading>
 
         <div className="mt-14 grid gap-4 lg:grid-cols-2">
-          <div className="flex flex-col rounded-card bg-surface p-7 md:p-10">
+          <div className="flex flex-col rounded-card bg-surface p-7 shadow-card md:p-10">
             <h3 className="font-display text-display-md">Innbytte</h3>
             <p className="mt-5 flex-1 text-lg leading-relaxed text-stone-dark">
               På tide å bytte bil? Vi tar gjerne bilen din i innbytte! Fyll ut skjemaet, så sender vi deg et tilbud så
@@ -32,7 +32,7 @@ export function SellOptions() {
             </div>
           </div>
 
-          <div className="flex flex-col rounded-card bg-surface p-7 md:p-10">
+          <div className="flex flex-col rounded-card bg-surface p-7 shadow-card md:p-10">
             <h3 className="font-display text-display-md">Formidlingssalg</h3>
             <p className="mt-5 text-lg leading-relaxed text-stone-dark">
               Ønsker du å selge bilen din med hjelp fra en forhandler? Vi tar gjerne oppdraget, og sparer deg for tid og

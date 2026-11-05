@@ -77,13 +77,13 @@ export default async function StoryPage({ params }: PageProps<"/historier/[slug]
         </div>
       </article>
 
-      <aside aria-labelledby="flere-historier" className="bg-ink py-20 text-paper md:py-28">
+      <aside aria-labelledby="flere-historier" className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-site px-5 md:px-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <h2 id="flere-historier" className="font-display text-display-md">
               Flere historier
             </h2>
-            <ButtonLink href="/historier" variant="secondary" tone="dark" className="self-start sm:self-auto">
+            <ButtonLink href="/historier" variant="secondary" className="self-start sm:self-auto">
               Alle historier
             </ButtonLink>
           </div>
@@ -92,11 +92,11 @@ export default async function StoryPage({ params }: PageProps<"/historier/[slug]
               <li key={other.slug}>
                 <Link
                   href={`/historier/${other.slug}`}
-                  className="group flex h-full flex-col rounded-card border-2 border-transparent bg-carbon p-7 transition-colors duration-200 hover:border-paper motion-reduce:transition-none"
+                  className="group flex h-full flex-col rounded-card bg-surface p-7 shadow-card"
                 >
-                  <p className="text-sm font-semibold text-stone">{other.eyebrow}</p>
+                  <p className="text-sm font-semibold text-brand">{other.eyebrow}</p>
                   <h3 className="mt-3 font-display text-display-sm">{other.title}</h3>
-                  <p className="mt-3 leading-relaxed text-stone">{other.standfirst}</p>
+                  <p className="mt-3 leading-relaxed text-stone-dark">{other.standfirst}</p>
                 </Link>
               </li>
             ))}

@@ -3,21 +3,16 @@ import { brands, company } from "@/content/site";
 
 export function Brands() {
   return (
-    <section aria-labelledby="merker-tittel" className="bg-ink py-20 text-paper md:py-28">
+    <section aria-labelledby="merker-tittel" className="bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <p className="text-sm font-semibold text-stone">Spesialister</p>
+        <p className="text-sm font-semibold text-stone-dark">Spesialister</p>
         <h2 id="merker-tittel" className="sr-only">
           Spesialisert på Audi, BMW og Mercedes-Benz
         </h2>
 
-        <ul className="mt-8 grid border-y-2 border-line-dark md:grid-cols-3">
-          {brands.map((brand, i) => (
-            <li
-              key={brand}
-              className={`py-6 font-display text-display-lg md:py-10 ${
-                i > 0 ? "border-t border-line-dark md:border-t-0 md:border-l md:pl-8" : ""
-              }`}
-            >
+        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          {brands.map((brand) => (
+            <li key={brand} className="rounded-card bg-surface px-6 py-8 font-display text-display-md shadow-card">
               {brand}
             </li>
           ))}
@@ -27,7 +22,7 @@ export function Brands() {
           <p className="font-display text-display-md text-balance lg:col-span-5">
             Skreddersy drømmebilen gjennom vårt kontaktnett.
           </p>
-          <div className="space-y-5 text-lg leading-relaxed text-stone lg:col-span-6 lg:col-start-7">
+          <div className="space-y-5 text-lg leading-relaxed text-stone-dark lg:col-span-6 lg:col-start-7">
             <p>
               Vi har valgt å spesialisere oss på Audi, BMW og Mercedes-Benz. Gjennom en årrekke har vi opparbeidet oss
               et solid kontaktnett over hele Tyskland. Det gjør at vi kan tilby deg kvalitet og sikkerhet, samt en bil

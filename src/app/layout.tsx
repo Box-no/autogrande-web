@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { MotionProvider } from "@/components/motion-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/content/site";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  axes: ["wdth"],
   display: "swap",
 });
 
@@ -44,7 +43,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nb-NO" className={`${archivo.variable} antialiased`}>
+    <html lang="nb-NO" className={`${jakarta.variable} antialiased`}>
       <body className="bg-paper font-sans text-ink">
         <MotionProvider>
           <a

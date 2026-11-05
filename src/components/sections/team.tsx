@@ -21,16 +21,16 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
     <section
       id="om-oss"
       aria-labelledby="om-oss-tittel"
-      className={home ? "bg-ink py-20 text-paper md:py-28" : "bg-paper py-20 md:py-28"}
+      className="bg-paper py-16 md:py-24"
     >
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <div className={home ? "flex flex-col gap-8 md:flex-row md:items-end md:justify-between" : "max-w-3xl"}>
+        <div className={home ? "" : "max-w-3xl"}>
           <SectionHeading
             id="om-oss-tittel"
             level={headingLevel}
             size={headingLevel === "h1" ? "xl" : "lg"}
             eyebrow="Om oss"
-            tone={home ? "dark" : "light"}
+            align={home ? "center" : "left"}
             title={home ? "Folkene bak AutoGrande." : "Folkene bak AutoGrande. Vi elsker biler."}
           >
             {home ? (
@@ -55,16 +55,18 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
             )}
           </SectionHeading>
           {home ? (
-            <ButtonLink href="/om-oss" variant="secondary" tone="dark" className="shrink-0 self-start md:self-auto">
-              Les mer om oss
-            </ButtonLink>
+            <div className="mt-8 flex justify-center">
+              <ButtonLink href="/om-oss" variant="secondary">
+                Les mer om oss
+              </ButtonLink>
+            </div>
           ) : null}
         </div>
 
         <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((person) => (
-            <li key={person.name} className={home ? "overflow-hidden rounded-card bg-carbon" : "overflow-hidden rounded-card bg-surface"}>
-              <div className={`relative aspect-[4/5] ${home ? "bg-line-dark" : "bg-line-light"}`}>
+            <li key={person.name} className="overflow-hidden rounded-card bg-surface shadow-card">
+              <div className="relative m-3 aspect-[4/5] overflow-hidden rounded-[1.1rem] bg-soft">
                 <Image
                   src={person.image}
                   alt=""
@@ -76,9 +78,9 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
               </div>
               <div className="p-6 md:p-7">
                 <SubHeading className="font-display text-display-sm">{person.name}</SubHeading>
-                <p className={`mt-1 text-sm ${home ? "text-stone" : "text-stone-dark"}`}>{person.role}</p>
+                <p className="mt-1 text-sm text-stone-dark">{person.role}</p>
                 {"phone" in person || "email" in person ? (
-                  <ul className={`mt-5 space-y-1 border-t pt-4 text-sm ${home ? "border-line-dark" : "border-line-light"}`}>
+                  <ul className="mt-5 space-y-1 border-t border-line-light pt-4 text-sm">
                     {"phone" in person ? (
                       <li>
                         <a
@@ -93,7 +95,7 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
                       <li>
                         <a
                           href={`mailto:${person.email}`}
-                          className={`underline-offset-4 hover:underline ${home ? "text-stone" : "text-stone-dark"}`}
+                          className="text-stone-dark underline-offset-4 hover:underline"
                         >
                           {person.email}
                         </a>

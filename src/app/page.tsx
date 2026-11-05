@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/hero";
 import { Services } from "@/components/sections/services";
 import { Team } from "@/components/sections/team";
 import { Tracks } from "@/components/sections/tracks";
+import { VisitBanner } from "@/components/sections/visit";
 import { TrustBar } from "@/components/sections/trust-bar";
 import { company, heroCar } from "@/content/site";
 
@@ -35,6 +36,7 @@ export default function Home() {
       <FeaturedCars />
       <Services />
       <Team variant="home" />
+      <VisitBanner />
     </PageFrame>
   );
 }

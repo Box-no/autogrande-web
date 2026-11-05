@@ -11,13 +11,13 @@ export function Services() {
           {services.map((service) => (
             <li
               key={service.title}
-              className="group relative flex flex-col rounded-card border-2 border-transparent bg-surface p-7 transition-colors duration-200 hover:border-ink motion-reduce:transition-none"
+              className="group relative flex flex-col rounded-card bg-surface p-7 shadow-card"
             >
               <h3 className="font-display text-display-sm">{service.title}</h3>
               <p className="mt-4 flex-1 leading-relaxed text-stone-dark">{service.body}</p>
               <a
                 href={service.href}
-                className="mt-8 w-fit text-sm font-semibold underline decoration-brand decoration-2 underline-offset-[6px] after:absolute after:inset-0 group-hover:text-brand-deep"
+                className="mt-8 w-fit text-sm font-semibold text-brand after:absolute after:inset-0 group-hover:text-brand-deep"
               >
                 {service.cta}
               </a>

@@ -7,6 +7,7 @@ type SectionHeadingProps = {
   level?: "h1" | "h2";
   tone?: "dark" | "light";
   size?: "lg" | "xl";
+  align?: "left" | "center";
   children?: ReactNode;
 };
 
@@ -17,12 +18,14 @@ export function SectionHeading({
   level = "h2",
   tone = "light",
   size = "lg",
+  align = "left",
   children,
 }: SectionHeadingProps) {
   const muted = tone === "dark" ? "text-stone" : "text-stone-dark";
   const Heading = level;
+  const centered = align === "center";
   return (
-    <div className="max-w-3xl">
+    <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-3xl"}>
       <p className={`text-sm font-semibold ${muted}`}>{eyebrow}</p>
       <Heading
         id={id}
@@ -30,7 +33,9 @@ export function SectionHeading({
       >
         {title}
       </Heading>
-      {children ? <div className={`mt-6 max-w-xl text-lg leading-relaxed ${muted}`}>{children}</div> : null}
+      {children ? (
+        <div className={`mt-4 text-base leading-relaxed ${muted} ${centered ? "mx-auto max-w-xl" : "max-w-xl"}`}>{children}</div>
+      ) : null}
     </div>
   );
 }

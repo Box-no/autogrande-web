@@ -6,7 +6,7 @@ const linkClass = "underline-offset-4 hover:text-paper hover:underline";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t-4 border-brand bg-ink text-paper">
+    <footer className="bg-carbon text-paper">
       <div className="mx-auto max-w-site px-5 py-16 md:px-10 md:py-20">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Link href="/" aria-label="AutoGrande – forsiden" className="w-fit">
@@ -88,6 +88,9 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-16 text-xs text-stone">© {company.name}. Alle rettigheter forbeholdt.</p>
+        <p aria-hidden="true" className="mt-10 font-display text-[clamp(3.5rem,14vw,9rem)] leading-none text-wordmark">
+          AutoGrande
+        </p>
       </div>
     </footer>
   );

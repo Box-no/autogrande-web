@@ -22,24 +22,22 @@ export function SiteHeader() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line-dark bg-ink text-paper">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line-light bg-paper/90 text-ink backdrop-blur-md">
       <div className="mx-auto flex h-18 max-w-site items-center justify-between gap-6 px-5 md:px-10">
         <Link href="/" className="shrink-0" aria-label="AutoGrande – forsiden">
           <Logo className="h-auto w-36 md:w-40" />
         </Link>
 
-        <nav aria-label="Hovedmeny" className="hidden h-full lg:block">
-          <ul className="flex h-full items-stretch gap-7 text-sm font-medium">
+        <nav aria-label="Hovedmeny" className="hidden lg:block">
+          <ul className="flex items-center gap-7 text-sm font-medium">
             {navItems.map((item) => {
               const active = isActive(item.href);
               return (
-                <li key={item.href} className="flex">
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative flex items-center transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] ${
-                      active ? "text-paper after:bg-brand" : "text-stone hover:text-paper after:bg-transparent"
-                    }`}
+                    className={active ? "text-brand" : "text-stone-dark transition-colors hover:text-ink"}
                   >
                     {item.label}
                   </Link>
@@ -51,13 +49,13 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
-            <a href={company.phoneHref} className={`${buttonClasses("primary")} py-3 whitespace-nowrap`}>
+            <a href={company.phoneHref} className={`${buttonClasses("primary")} whitespace-nowrap`}>
               Ring {company.phoneDisplay}
             </a>
           </div>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-control border-2 border-line-dark lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-control border border-line-light bg-surface lg:hidden"
             aria-expanded={open}
             aria-controls="mobilmeny"
             aria-label={open ? "Lukk meny" : "Åpne meny"}
@@ -65,10 +63,10 @@ export function SiteHeader() {
           >
             <span aria-hidden="true" className="relative block h-3 w-5">
               <span
-                className={`absolute left-0 h-0.5 w-5 bg-paper transition-transform duration-200 ${open ? "top-1.5 rotate-45" : "top-0"}`}
+                className={`absolute left-0 h-0.5 w-5 bg-ink transition-transform duration-200 ${open ? "top-1.5 rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 h-0.5 w-5 bg-paper transition-transform duration-200 ${open ? "top-1.5 -rotate-45" : "top-3"}`}
+                className={`absolute left-0 h-0.5 w-5 bg-ink transition-transform duration-200 ${open ? "top-1.5 -rotate-45" : "top-3"}`}
               />
             </span>
           </button>
@@ -80,7 +78,7 @@ export function SiteHeader() {
           <motion.nav
             id="mobilmeny"
             aria-label="Mobilmeny"
-            className="border-t border-line-dark bg-ink lg:hidden"
+            className="border-t border-line-light bg-paper lg:hidden"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -95,11 +93,8 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       onClick={() => setOpen(false)}
-                      className={`flex items-center gap-3 border-b border-line-dark py-4 font-display text-display-sm ${
-                        active ? "text-paper" : "text-stone"
-                      }`}
+                      className={`block border-b border-line-light py-4 text-lg font-semibold ${active ? "text-brand" : "text-ink"}`}
                     >
-                      {active ? <span aria-hidden="true" className="size-2 bg-brand" /> : null}
                       {item.label}
                     </Link>
                   </li>

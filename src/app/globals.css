@@ -2,20 +2,19 @@
 
 :root {
   /* Brand palette — rebrand here only */
-  --ag-ink: #111214;
-  --ag-carbon: #1b1c1f;
-  --ag-line-dark: #303236;
-  --ag-paper: #f3f3f1;
+  --ag-ink: #1a1a1a;
+  --ag-carbon: #141414;
+  --ag-line-dark: #2c2c2c;
+  --ag-paper: #f6f3ef;
+  --ag-soft: #f3ebe6;
   --ag-surface: #ffffff;
-  --ag-line-light: #d8d9d5;
-  --ag-stone: #a0a2a7;
-  --ag-stone-dark: #55585d;
+  --ag-line-light: #e7e1da;
+  --ag-stone: #8a847c;
+  --ag-stone-dark: #5e5954;
   --ag-red: #d8232a;
   --ag-red-bright: #ff4d52;
   --ag-red-deep: #b01b21;
-
-  --ag-display-stretch: 82%;
-  --ag-display-weight: 720;
+  --ag-wordmark: #3a3531;
 }
 
 @theme inline {
@@ -23,6 +22,7 @@
   --color-carbon: var(--ag-carbon);
   --color-line-dark: var(--ag-line-dark);
   --color-paper: var(--ag-paper);
+  --color-soft: var(--ag-soft);
   --color-surface: var(--ag-surface);
   --color-line-light: var(--ag-line-light);
   --color-stone: var(--ag-stone);
@@ -30,33 +30,39 @@
   --color-brand: var(--ag-red);
   --color-brand-bright: var(--ag-red-bright);
   --color-brand-deep: var(--ag-red-deep);
+  --color-wordmark: var(--ag-wordmark);
 
-  --font-sans: var(--font-archivo);
+  --font-sans: var(--font-jakarta);
 
-  --text-display-xl: clamp(3rem, 8.5vw, 7.75rem);
-  --text-display-xl--line-height: 0.9;
-  --text-display-lg: clamp(2.25rem, 5vw, 4.5rem);
-  --text-display-lg--line-height: 0.95;
-  --text-display-md: clamp(1.75rem, 3vw, 2.75rem);
-  --text-display-md--line-height: 1;
-  --text-display-sm: clamp(1.375rem, 2vw, 1.75rem);
-  --text-display-sm--line-height: 1.1;
+  --text-display-xl: clamp(2.25rem, 4.5vw, 3.75rem);
+  --text-display-xl--line-height: 1.05;
+  --text-display-lg: clamp(1.875rem, 3vw, 2.75rem);
+  --text-display-lg--line-height: 1.1;
+  --text-display-md: clamp(1.5rem, 2vw, 2rem);
+  --text-display-md--line-height: 1.15;
+  --text-display-sm: 1.25rem;
+  --text-display-sm--line-height: 1.25;
 
-  --tracking-display: -0.015em;
+  --tracking-display: -0.03em;
 
-  --radius-card: 2px;
-  --radius-control: 2px;
+  --radius-card: 1.5rem;
+  --radius-control: 999px;
 
-  --container-site: 88rem;
+  --shadow-card: 0 10px 30px rgb(26 26 26 / 0.06);
+
+  --container-site: 80rem;
 
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @utility font-display {
   font-family: var(--font-sans);
-  font-stretch: var(--ag-display-stretch);
-  font-weight: var(--ag-display-weight);
+  font-weight: 700;
   letter-spacing: var(--tracking-display);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
 }
 
 html {
@@ -85,7 +91,6 @@ body {
   outline-offset: 3px;
 }
 
-.bg-ink :focus-visible,
 .bg-carbon :focus-visible {
   outline-color: var(--ag-red-bright);
 }
