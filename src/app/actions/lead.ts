@@ -1,5 +1,6 @@
 "use server";
 
+import { createCase, sellerPath } from "@/lib/cases";
 import { leadForms, type LeadKind } from "@/content/forms";
 import { company } from "@/content/site";
 
@@ -8,6 +9,7 @@ export type LeadState = {
   message: string;
   fieldErrors: Record<string, string>;
   values?: Record<string, string>;
+  followPath?: string;
 };
 
 const MAX_LENGTH = 1000;
@@ -58,10 +60,26 @@ export async function submitLead(
     return { status: "error", message: "Sjekk feltene som er markert.", fieldErrors, values };
   }
 
+  let followPath: string | undefined;
+  if (kind === "elbil") {
+    try {
+      const created = await createCase({
+        name: values.navn ?? "",
+        phone: values.telefon ?? "",
+        regnr: (values.regnr ?? "").toUpperCase(),
+        km: values.km ?? "",
+        wishedPrice: values.onsketPris ?? "",
+      });
+      followPath = sellerPath(created.token);
+    } catch (error) {
+      console.error("[lead] case store failed", error);
+    }
+  }
+
   const webhookUrl = process.env.LEAD_WEBHOOK_URL;
 
   if (!webhookUrl) {
-    if (process.env.NODE_ENV === "production") {
+    if (!followPath && process.env.NODE_ENV === "production") {
       return {
         status: "error",
         message: `Skjemaet er ikke tilgjengelig akkurat nå. Ring oss på ${company.phoneDisplay}.`,
@@ -69,19 +87,27 @@ export async function submitLead(
         values,
       };
     }
-    console.info("[lead]", kind, values);
-    return { status: "success", message: config.successMessage, fieldErrors: {} };
+    console.info("[lead]", kind, values, followPath ?? "");
+    return { status: "success", message: config.successMessage, fieldErrors: {}, followPath };
   }
 
   try {
     const res = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kind, values, submittedAt: new Date().toISOString() }),
+      body: JSON.stringify({
+        kind,
+        values,
+        submittedAt: new Date().toISOString(),
+        followPath,
+      }),
     });
     if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
   } catch (error) {
     console.error("[lead] delivery failed", error);
+    if (followPath) {
+      return { status: "success", message: config.successMessage, fieldErrors: {}, followPath };
+    }
     return {
       status: "error",
       message: `Noe gikk galt. Prøv igjen, eller ring oss på ${company.phoneDisplay}.`,
@@ -90,5 +116,5 @@ export async function submitLead(
     };
   }
 
-  return { status: "success", message: config.successMessage, fieldErrors: {} };
+  return { status: "success", message: config.successMessage, fieldErrors: {}, followPath };
 }

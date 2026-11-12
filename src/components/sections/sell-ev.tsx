@@ -33,7 +33,7 @@ export function SellEv({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) 
         <div className="rounded-card bg-surface p-6 shadow-card sm:p-10 lg:col-span-5 lg:self-start">
           <SubHeading className="font-display text-display-md">Start med bilen din</SubHeading>
           <p className="mt-3 text-stone-dark">
-            Send registreringsnummer og kilometerstand, så tar vi kontakt for å avtale testing.
+            Send registreringsnummer og kilometerstand. Du får en side der du kan følge sjekken og tilbudet.
           </p>
           <div className="mt-8">
             <LeadForm config={leadForms.elbil} />

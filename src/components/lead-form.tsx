@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useId } from "react";
+import Link from "next/link";
 import { submitLead, type LeadState } from "@/app/actions/lead";
 import { buttonClasses } from "@/components/button-link";
 import type { LeadFormConfig, LeadField } from "@/content/forms";
@@ -40,6 +41,11 @@ export function LeadForm({ config, tone = "light" }: LeadFormProps) {
     return (
       <div role="status" className="flex min-h-64 flex-col justify-center gap-5 border-l-4 border-brand pl-6">
         <p className="font-display text-display-md">{state.message}</p>
+        {state.followPath ? (
+          <Link href={state.followPath} className={buttonClasses("secondary")}>
+            Følg saken din
+          </Link>
+        ) : null}
       </div>
     );
   }

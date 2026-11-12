@@ -43,3 +43,6 @@ next-env.d.ts
 
 # reference material from the current site
 /.ref
+
+# seller cases (personal data, not source)
+/data
