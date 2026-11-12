@@ -41,13 +41,13 @@ export function Hero() {
 
         <div className="flex flex-col justify-between gap-10 rounded-card bg-soft p-7 md:p-10 lg:col-span-4">
           <div>
-            <p className="text-sm font-semibold text-brand">Vi kjøper din elbil</p>
-            <h2 className="mt-4 font-display text-display-md text-balance">Bud direkte, uten mellomledd.</h2>
+            <p className="text-sm font-semibold text-brand">Selg bilen</p>
+            <h2 className="mt-4 font-display text-display-md text-balance">Vi tester, tar bilder og selger den.</h2>
             <p className="mt-4 leading-relaxed text-stone-dark">
-              Send reg.nr. og km-stand. Du får bud fra oss, og kan sammenligne med Nettbil.
+              Eget verksted og egen fotohall. Etter testen får du et tilbud og velger selv om du vil fortsette.
             </p>
           </div>
-          <ButtonLink href="/selg-elbil">Få bud på elbilen din</ButtonLink>
+          <ButtonLink href="/selg-elbil">Selg bilen din</ButtonLink>
         </div>
       </div>
     </section>

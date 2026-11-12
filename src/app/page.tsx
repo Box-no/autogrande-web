@@ -11,7 +11,7 @@ import { company, heroCar } from "@/content/site";
 
 const title = "AutoGrande – Audi, BMW og Mercedes-Benz fra Tyskland | Skien";
 const description =
-  "Selvstendig bilimportør i Skien siden 2016. Vi henter og kjører bilene hjem fra Tyskland selv, med minimum ett års garanti på nesten alle biler. Vi kjøper også din elbil.";
+  "Selvstendig bilimportør i Skien siden 2016. Vi henter og kjører bilene hjem fra Tyskland selv, med minimum ett års garanti på nesten alle biler. Vi tester, tar bilder av og selger også bilen din.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

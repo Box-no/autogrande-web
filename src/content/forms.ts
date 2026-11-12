@@ -22,8 +22,8 @@ export type LeadFormConfig = {
 export const leadForms: Record<LeadKind, LeadFormConfig> = {
   elbil: {
     kind: "elbil",
-    submitLabel: "Få bud på bilen din",
-    successMessage: "Takk! Vi ser på bilen og kommer tilbake til deg med et bud.",
+    submitLabel: "Send inn bilen",
+    successMessage: "Takk! Vi tar kontakt for å avtale testing av bilen.",
     fields: [
       {
         name: "regnr",

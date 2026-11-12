@@ -14,7 +14,7 @@ export function SellOptions() {
     <section aria-labelledby="andre-maater-tittel" className="bg-paper py-20 md:py-28">
       <div className="mx-auto max-w-site px-5 md:px-10">
         <SectionHeading id="andre-maater-tittel" eyebrow="Andre måter å selge på" title="Innbytte eller formidlingssalg.">
-          <p>Har du ikke elbil, eller vil du heller bytte inn? Det ordner vi også.</p>
+          <p>Du kan også bytte inn bilen, eller lese vilkårene for formidlingssalg.</p>
         </SectionHeading>
 
         <div className="mt-14 grid gap-4 lg:grid-cols-2">

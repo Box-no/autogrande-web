@@ -22,7 +22,7 @@ export const openingHours = [
 
 export const navItems = [
   { label: "Biler på lager", href: "/biler" },
-  { label: "Selg elbilen", href: "/selg-elbil" },
+  { label: "Selg bilen", href: "/selg-elbil" },
   { label: "Verksted", href: "/verksted" },
   { label: "Om oss", href: "/om-oss" },
   { label: "Historier", href: "/historier" },
@@ -38,9 +38,9 @@ export const tracks = [
   },
   {
     href: "/selg-elbil",
-    eyebrow: "Vi kjøper din elbil",
-    title: "Bud direkte, uten mellomledd.",
-    body: "Send reg.nr. og km-stand. Du får bud fra oss, og kan sammenligne med Nettbil.",
+    eyebrow: "Selg bilen",
+    title: "Vi tester, tar bilder og selger den.",
+    body: "Eget verksted og egen fotohall. Etter testen får du et tilbud og velger selv om du vil fortsette.",
   },
   {
     href: "/verksted",
@@ -151,11 +151,40 @@ export const journeySteps = [
 
 export const brands = ["Audi", "BMW", "Mercedes-Benz"] as const;
 
-export const evPoints = [
-  "Bud direkte fra forhandleren som faktisk kjøper bilen",
-  "Ingen auksjonsplattform og ingen mellomledd",
-  "Du sender reg.nr. og km-stand – vi tar resten",
-  "[PLACEHOLDER: oppgjørstid og ansvar etter salg]",
+export const sellSteps = [
+  {
+    title: "Vi tester bilen din",
+    body: "Vi har eget verksted. Vi kjører en runde og tar en full sjekk. Eventuelle feil og mangler som kan utbedres kommer frem her. Du får et tilbud, og velger selv om du vil fortsette prosessen.",
+  },
+  {
+    title: "Vi tar bilder av bilen din",
+    body: "Vi har egen fotohall, så du slipper å gjøre det selv.",
+  },
+  {
+    title: "Vi selger bilen din",
+    body: "Vi selger bilen for deg.",
+  },
+] as const;
+
+export const sellFaq = [
+  {
+    question: "Hvordan foregår salget?",
+    answer:
+      "Først tester vi bilen. Deretter tar vi bilder. Så selger vi bilen for deg. Etter testen får du et tilbud, og du velger selv om du vil fortsette.",
+  },
+  {
+    question: "Hva innebærer testen?",
+    answer:
+      "Vi kjører en runde og tar en full sjekk på eget verksted. Eventuelle feil og mangler som kan utbedres kommer frem der.",
+  },
+  {
+    question: "Må jeg fortsette etter at bilen er testet?",
+    answer: "Nei. Du får et tilbud og velger selv om du vil fortsette prosessen.",
+  },
+  {
+    question: "Må jeg ta bilder av bilen selv?",
+    answer: "Nei. Vi tar bilder i egen fotohall.",
+  },
 ] as const;
 
 export const workshopPromises = [
