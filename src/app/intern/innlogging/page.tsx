@@ -39,7 +39,6 @@ async function Login({ searchParams }: { searchParams: Promise<{ feil?: string }
       <section className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-md px-5 md:px-10">
           <h1 className="font-display text-display-lg">Internt</h1>
-          <p className="mt-4 text-stone-dark">Koden er den som står i STAFF_ACCESS_CODE.</p>
           <form action={loginStaff} className="mt-8 rounded-card bg-surface p-6 shadow-card">
             <label htmlFor="kode" className="mb-2 block text-sm font-semibold">
               Tilgangskode

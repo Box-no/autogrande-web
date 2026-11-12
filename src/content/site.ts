@@ -27,6 +27,7 @@ export const navItems = [
   { label: "Om oss", href: "/om-oss" },
   { label: "Historier", href: "/historier" },
   { label: "Kontakt", href: "/kontakt" },
+  { label: "Internt", href: "/intern/innlogging" },
 ] as const;
 
 export const tracks = [
