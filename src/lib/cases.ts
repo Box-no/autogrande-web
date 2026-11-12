@@ -1,6 +1,7 @@
 import { randomBytes } from "crypto";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import path from "path";
+import { demoCases } from "@/content/demo-cases";
 
 export const caseStatuses = [
   "new",
@@ -26,6 +27,7 @@ export type SellCase = {
   token: string;
   createdAt: string;
   updatedAt: string;
+  vehicle: string;
   seller: {
     name: string;
     phone: string;
@@ -109,7 +111,7 @@ async function readStore(): Promise<Store> {
     if (!parsed || typeof parsed !== "object" || !("cases" in parsed)) return { cases: [] };
     const cases = (parsed as { cases?: unknown }).cases;
     if (!Array.isArray(cases)) return { cases: [] };
-    return { cases: cases.filter(isSellCase) };
+    return { cases: cases.filter(isSellCase).map((item) => ({ ...item, vehicle: item.vehicle || "" })) };
   } catch {
     return { cases: [] };
   }
@@ -137,6 +139,7 @@ export async function createCase(seller: SellCase["seller"]): Promise<SellCase> 
       token: randomBytes(24).toString("base64url"),
       createdAt: now,
       updatedAt: now,
+      vehicle: "",
       seller,
       status: "new",
       bookingNote: "",
@@ -154,12 +157,14 @@ export async function createCase(seller: SellCase["seller"]): Promise<SellCase> 
 
 export async function listCases(): Promise<SellCase[]> {
   const store = await readStore();
-  return store.cases.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  const tokens = new Set(store.cases.map((item) => item.token));
+  const stored = [...store.cases].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  return [...stored, ...demoCases.filter((item) => !tokens.has(item.token))];
 }
 
 export async function getCase(token: string): Promise<SellCase | null> {
   const store = await readStore();
-  return store.cases.find((item) => item.token === token) ?? null;
+  return store.cases.find((item) => item.token === token) ?? demoCases.find((item) => item.token === token) ?? null;
 }
 
 export async function saveCase(token: string, next: SellCase): Promise<void> {

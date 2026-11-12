@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { decideCase } from "@/app/actions/case-desk";
@@ -40,15 +41,20 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
     <PageFrame>
       <article className="bg-paper py-16 md:py-24">
         <div className="mx-auto max-w-3xl px-5 md:px-10">
-          <p className="text-sm font-semibold text-brand">AutoGrande</p>
-          <h1 className="mt-4 font-display text-display-xl text-balance">Saken din</h1>
+          <p className="text-sm font-semibold text-brand">AutoGrande{item.token.startsWith("demo-") ? " · Demo" : ""}</p>
+          <h1 className="mt-4 font-display text-display-xl text-balance">{item.vehicle || "Saken din"}</h1>
           <p className="mt-4 text-stone-dark">{sellerStatusCopy(item.status)}</p>
+          {item.token.startsWith("demo-") ? (
+            <p className="mt-3 text-stone-dark">Demo. Beløpet er annonseprisen fra lageret, ikke et kjøpstilbud.</p>
+          ) : null}
 
           <dl className="mt-10 grid gap-4 rounded-card bg-surface p-6 shadow-card sm:grid-cols-2 sm:p-8">
-            <div>
-              <dt className="text-sm text-stone-dark">Registreringsnummer</dt>
-              <dd className="mt-1 font-display text-display-sm">{item.seller.regnr}</dd>
-            </div>
+            {item.seller.regnr ? (
+              <div>
+                <dt className="text-sm text-stone-dark">Registreringsnummer</dt>
+                <dd className="mt-1 font-display text-display-sm">{item.seller.regnr}</dd>
+              </div>
+            ) : null}
             <div>
               <dt className="text-sm text-stone-dark">Kilometerstand</dt>
               <dd className="mt-1 font-display text-display-sm">{item.seller.km}</dd>
@@ -85,7 +91,7 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
                   <li key={url} className="overflow-hidden rounded-card bg-surface">
                     {/* Staff paste arbitrary https URLs, which next/image cannot allow in advance. */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={url} alt="" className="aspect-[4/3] w-full object-cover" />
+                    <img src={url} alt={item.vehicle || ""} className="aspect-[4/3] w-full object-cover" />
                   </li>
                 ))}
               </ul>
@@ -93,6 +99,7 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
           ) : null}
 
           {item.status === "offered" ? <Offers item={item} /> : null}
+          {item.token === "demo-tilbud" ? <DemoOutcomes /> : null}
           {item.decision ? <Decision item={item} /> : null}
 
           <p className="mt-12 text-stone-dark">
@@ -105,6 +112,25 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
         </div>
       </article>
     </PageFrame>
+  );
+}
+
+function DemoOutcomes() {
+  const links = [
+    ["/sak/demo-kjop", "Slik ser det ut når kjøpet godtas"],
+    ["/sak/demo-salg", "Slik ser det ut når vi selger bilen"],
+    ["/sak/demo-avslaatt", "Slik ser det ut når begge avslås"],
+  ] as const;
+  return (
+    <ul className="mt-6 grid gap-2">
+      {links.map(([href, label]) => (
+        <li key={href}>
+          <Link href={href} className="font-semibold text-ink underline-offset-4 hover:underline">
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 

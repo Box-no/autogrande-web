@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -46,10 +47,12 @@ async function StaffList() {
             </form>
           </div>
 
+          <p className="mt-6 max-w-2xl text-stone-dark">
+            Åtte demoer, én bil i hvert steg. Beløpene er annonseprisen fra lageret, ikke et kjøpstilbud.
+          </p>
           {caseStoreIsEphemeral() ? (
-            <p className="mt-6 max-w-2xl rounded-card bg-soft px-5 py-4 text-stone-dark">
-              På Vercel lagres sakene på disken til én instans, og kan forsvinne. Ikke bruk dette mot ekte kunder før
-              lagringen er flyttet.
+            <p className="mt-4 max-w-2xl rounded-card bg-soft px-5 py-4 text-stone-dark">
+              Demoene blir liggende. Ekte henvendelser lagres ikke trygt på Vercel ennå.
             </p>
           ) : null}
 
@@ -59,12 +62,29 @@ async function StaffList() {
             <ul className="mt-10 grid gap-4">
               {cases.map((item) => (
                 <li key={item.token}>
-                  <Link href={`/intern/saker/${item.token}`} className="block rounded-card bg-surface p-6 shadow-card">
-                    <p className="text-sm font-semibold text-brand">{caseStatusLabel(item.status)}</p>
-                    <h2 className="mt-2 font-display text-display-sm">{item.seller.regnr || "Uten reg.nr."}</h2>
-                    <p className="mt-2 text-stone-dark">
-                      {item.seller.name} · {item.seller.phone} · {item.seller.km}
-                    </p>
+                  <Link
+                    href={`/intern/saker/${item.token}`}
+                    className="flex flex-col gap-4 rounded-card bg-surface p-4 shadow-card sm:flex-row sm:items-center sm:p-6"
+                  >
+                    {item.photoUrls[0] ? (
+                      <Image
+                        src={item.photoUrls[0]}
+                        alt={item.vehicle || item.seller.regnr || "Bil"}
+                        width={320}
+                        height={240}
+                        className="aspect-[4/3] w-full rounded-card object-cover sm:w-40"
+                      />
+                    ) : null}
+                    <span>
+                      <span className="text-sm font-semibold text-brand">{caseStatusLabel(item.status)}</span>
+                      <h2 className="mt-2 font-display text-display-sm">
+                        {item.vehicle || item.seller.regnr || "Uten reg.nr."}
+                      </h2>
+                      <span className="mt-2 block text-stone-dark">
+                        {item.seller.name} · {item.seller.km}
+                        {item.seller.wishedPrice ? ` · ${item.seller.wishedPrice}` : ""}
+                      </span>
+                    </span>
                   </Link>
                 </li>
               ))}

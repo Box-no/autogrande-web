@@ -60,7 +60,7 @@ async function StaffCase({
               Saker
             </Link>
           </p>
-          <h1 className="mt-4 font-display text-display-xl">{item.seller.regnr}</h1>
+          <h1 className="mt-4 font-display text-display-xl">{item.vehicle || item.seller.regnr || "Sak"}</h1>
           <p className="mt-3 text-stone-dark">
             {item.seller.name} · {item.seller.phone} · {item.seller.km}
             {item.seller.wishedPrice ? ` · ønsket ${item.seller.wishedPrice}` : ""}
