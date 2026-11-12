@@ -29,8 +29,6 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
             id="om-oss-tittel"
             level={headingLevel}
             size={headingLevel === "h1" ? "xl" : "lg"}
-            eyebrow="Om oss"
-            align={home ? "center" : "left"}
             title={home ? "Folkene bak AutoGrande." : "Folkene bak AutoGrande. Vi elsker biler."}
           >
             {home ? (
@@ -55,7 +53,7 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
             )}
           </SectionHeading>
           {home ? (
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8">
               <ButtonLink href="/om-oss" variant="secondary">
                 Les mer om oss
               </ButtonLink>
@@ -63,10 +61,10 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
           ) : null}
         </div>
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((person) => (
-            <li key={person.name} className="overflow-hidden rounded-card bg-surface shadow-card">
-              <div className="relative m-3 aspect-[4/5] overflow-hidden rounded-[1.1rem] bg-soft">
+            <li key={person.name}>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-card bg-soft">
                 <Image
                   src={person.image}
                   alt=""
@@ -76,11 +74,11 @@ export function Team({ headingLevel = "h2", variant = "page" }: TeamProps) {
                   className="object-cover object-[center_18%]"
                 />
               </div>
-              <div className="p-6 md:p-7">
+              <div className="pt-4">
                 <SubHeading className="font-display text-display-sm">{person.name}</SubHeading>
                 <p className="mt-1 text-sm text-stone-dark">{person.role}</p>
                 {"phone" in person || "email" in person ? (
-                  <ul className="mt-5 space-y-1 border-t border-line-light pt-4 text-sm">
+                  <ul className="mt-3 space-y-1 text-sm">
                     {"phone" in person ? (
                       <li>
                         <a

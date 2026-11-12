@@ -7,19 +7,18 @@ import { company } from "@/content/site";
 
 type InfoFormPageProps = {
   id: string;
-  eyebrow: string;
   title: string;
   form: LeadFormConfig;
   children: ReactNode;
 };
 
-export function InfoFormPage({ id, eyebrow, title, form, children }: InfoFormPageProps) {
+export function InfoFormPage({ id, title, form, children }: InfoFormPageProps) {
   return (
     <PageFrame>
       <section aria-labelledby={id} className="bg-paper py-16 md:py-24">
         <div className="mx-auto grid max-w-site gap-12 px-5 md:px-10 lg:grid-cols-12">
           <div className="max-w-xl text-lg leading-relaxed text-stone-dark lg:col-span-5">
-            <SectionHeading id={id} level="h1" size="xl" eyebrow={eyebrow} title={title} />
+            <SectionHeading id={id} level="h1" size="xl" title={title} />
             <div className="mt-6 space-y-4">{children}</div>
             <p className="mt-6 text-base">
               Bilder kan sendes til{" "}

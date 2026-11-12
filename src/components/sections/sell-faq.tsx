@@ -5,7 +5,7 @@ export function SellFaq() {
   return (
     <section aria-labelledby="faq-tittel" className="bg-paper pb-16 md:pb-24">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <SectionHeading id="faq-tittel" eyebrow="Spørsmål og svar" title="Ofte stilte spørsmål">
+        <SectionHeading id="faq-tittel" title="Ofte stilte spørsmål">
           <p>Det vi kan svare på ut fra hvordan salget foregår hos oss.</p>
         </SectionHeading>
 

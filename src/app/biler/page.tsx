@@ -17,7 +17,6 @@ export default function BilerPage() {
       <FeaturedCars
         headingLevel="h1"
         cars={cars}
-        eyebrow="På lager"
         title="Biler på lager."
         intro="Alle bilene som står annonsert hos oss akkurat nå."
         showListingLink={false}

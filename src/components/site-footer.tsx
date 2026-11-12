@@ -66,7 +66,7 @@ export function SiteFooter() {
           <nav aria-label="Bunnmeny" className="lg:col-span-2">
             <h2 className="text-sm font-semibold text-paper">Sider</h2>
             <ul className="mt-4 space-y-1.5 text-sm text-stone">
-              {navItems.map((item) => (
+              {navItems.filter((item) => item.href !== "/intern/innlogging").map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className={linkClass}>
                     {item.label}
@@ -93,14 +93,16 @@ export function SiteFooter() {
                   Reklamasjon
                 </Link>
               </li>
+              <li>
+                <Link href="/intern/innlogging" className={linkClass}>
+                  Internt
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
 
         <p className="mt-16 text-xs text-stone">© {company.name}. Alle rettigheter forbeholdt.</p>
-        <p aria-hidden="true" className="mt-10 font-display text-[clamp(3.5rem,14vw,9rem)] leading-none text-wordmark">
-          AutoGrande
-        </p>
       </div>
     </footer>
   );

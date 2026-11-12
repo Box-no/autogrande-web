@@ -8,7 +8,7 @@ export function Journey() {
       <div className="mx-auto grid max-w-site gap-14 px-5 md:px-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
-            <SectionHeading id="reisen-tittel" eyebrow="Reisen fra Tyskland" title="Hentet i Tyskland. Kjørt hjem av oss.">
+            <SectionHeading id="reisen-tittel" title="Hentet i Tyskland. Kjørt hjem av oss.">
               <p>
                 Vi snakker som bilentusiaster, ikke selgere. Spør oss gjerne hvor bilen kommer fra og hva vi fant da vi
                 gikk den etter – vi forteller det rett ut.
@@ -33,13 +33,10 @@ export function Journey() {
           </div>
         </div>
 
-        <ol className="space-y-4 lg:col-span-6 lg:col-start-7">
+        <ol className="border-t-2 border-ink lg:col-span-6 lg:col-start-7">
           {journeySteps.map((step, i) => (
-            <li key={step.title} className="flex gap-6 rounded-card bg-surface p-7 md:gap-8 md:p-9">
-              <span
-                aria-hidden="true"
-                className="flex size-10 shrink-0 items-center justify-center rounded-control bg-ink font-display text-lg text-paper tabular-nums"
-              >
+            <li key={step.title} className="flex gap-6 border-b border-line-light py-7 md:gap-8 md:py-9">
+              <span aria-hidden="true" className="w-8 shrink-0 font-display text-display-sm text-stone tabular-nums">
                 {i + 1}
               </span>
               <div>

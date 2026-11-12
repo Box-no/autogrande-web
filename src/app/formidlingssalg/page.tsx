@@ -19,7 +19,6 @@ export default function ConsignmentPage() {
   return (
     <InfoFormPage
       id="formidling-tittel"
-      eyebrow="Formidlingssalg"
       title="Vi selger bilen for deg."
       form={leadForms.formidling}
     >

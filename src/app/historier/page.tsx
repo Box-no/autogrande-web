@@ -16,7 +16,7 @@ export default function StoriesPage() {
     <PageFrame>
       <section aria-labelledby="historier-tittel" className="bg-paper py-20 md:py-28">
         <div className="mx-auto max-w-site px-5 md:px-10">
-          <SectionHeading id="historier-tittel" level="h1" size="xl" eyebrow="Fra bilhuset" title="Historier">
+          <SectionHeading id="historier-tittel" level="h1" size="xl" title="Historier">
             <p>Seks korte tekster om bilene vi henter hjem, og om hvorfor vi gjør det.</p>
           </SectionHeading>
 

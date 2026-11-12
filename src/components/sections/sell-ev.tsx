@@ -12,19 +12,20 @@ export function SellEv({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) 
           <SectionHeading
             id="elbil-tittel"
             level={headingLevel}
-            eyebrow="AutoGrande tilbyr"
             size={headingLevel === "h1" ? "xl" : "lg"}
             title="Vi selger bilen din."
           >
             <p>Vi tester bilen, tar bildene og selger den for deg.</p>
           </SectionHeading>
 
-          <ol className="mt-10 grid gap-4">
+          <ol className="mt-10 border-t-2 border-ink">
             {sellSteps.map((step, index) => (
-              <li key={step.title} className="rounded-card bg-surface p-6 shadow-card md:p-8">
-                <p className="text-sm font-semibold text-brand">Steg {index + 1}</p>
-                <h2 className="mt-2 font-display text-display-sm">{step.title}</h2>
-                <p className="mt-3 max-w-2xl leading-relaxed text-stone-dark">{step.body}</p>
+              <li key={step.title} className="grid gap-2 border-b border-line-light py-6 sm:grid-cols-[3rem_1fr] md:py-8">
+                <span className="font-display text-display-sm text-stone tabular-nums">{index + 1}</span>
+                <div>
+                  <h2 className="font-display text-display-sm">{step.title}</h2>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-stone-dark">{step.body}</p>
+                </div>
               </li>
             ))}
           </ol>

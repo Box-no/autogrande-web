@@ -10,7 +10,7 @@ export const metadata = pageMetadata(
 
 export default function ComplaintPage() {
   return (
-    <InfoFormPage id="reklamasjon-tittel" eyebrow="Reklamasjon" title="Meld inn reklamasjon." form={leadForms.reklamasjon}>
+    <InfoFormPage id="reklamasjon-tittel" title="Meld inn reklamasjon." form={leadForms.reklamasjon}>
       <p>
         Vi tar din reklamasjon på alvor. Dersom du opplever problemer eller feil med bilen du har kjøpt av oss, fyll ut
         skjemaet. Vi bestreber oss på å svare alle innen 7 dager. Haster det, skriv det i beskrivelsen.

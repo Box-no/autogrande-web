@@ -4,12 +4,12 @@ const sellTerms =
   "Fastpris for formidlingssalg er 25 000 kr. Omregistreringsavgift kommer i tillegg.";
 
 const workshop = {
-  driven: "Demo. Kjøreturen noteres her.",
-  check: "Demo. Den fulle sjekken noteres her.",
-  faults: "Demo. Feil som kan utbedres noteres her.",
+  driven: "Eksempeltekst. Her skriver verkstedet hvordan bilen oppførte seg på kjøreturen.",
+  check: "Eksempeltekst. Her står resultatet av den fulle sjekken på verkstedet.",
+  faults: "Eksempeltekst. Her står feil og mangler som kan utbedres før salg.",
 };
 
-const booking = "Demo. Testing er avtalt på verkstedet.";
+const booking = "Eksempeltekst. Her står dag og klokkeslett for testingen, og hvor bilen skal leveres.";
 
 function decision(choice: CaseDecision["choice"], at: string): CaseDecision {
   return { choice, buyPrice: "", sellTerms, at };
@@ -40,7 +40,7 @@ function demo(input: {
     updatedAt: input.at,
     vehicle: input.title,
     seller: {
-      name: "Demo",
+      name: "Demo-selger",
       phone: "97 66 63 80",
       regnr: "",
       km: input.km,

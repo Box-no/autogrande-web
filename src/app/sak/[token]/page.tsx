@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { decideCase } from "@/app/actions/case-desk";
+import { CaseProgress } from "@/components/case-progress";
 import { PageFrame } from "@/components/page-frame";
 import { buttonClasses } from "@/components/button-link";
-import { getCase, sellerStatusCopy, caseStatusLabel, type SellCase } from "@/lib/cases";
+import { formatCaseDate, getCase, isDemoCase, sellerStatusCopy, type SellCase } from "@/lib/cases";
 import { company } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -35,77 +36,89 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
   if (!item) notFound();
 
   const photos = item.photoUrls.filter((url) => url.startsWith("https://"));
-  const showWorkshop = [item.workshop.driven, item.workshop.check, item.workshop.faults].some((part) => part.length > 0);
+  const hasWorkshop = [item.workshop.driven, item.workshop.check, item.workshop.faults].some((part) => part.length > 0);
+  const demo = isDemoCase(item.token);
 
   return (
     <PageFrame>
-      <article className="bg-paper py-16 md:py-24">
+      <article className="bg-paper py-10 md:py-14">
         <div className="mx-auto max-w-3xl px-5 md:px-10">
-          <p className="text-sm font-semibold text-brand">AutoGrande{item.token.startsWith("demo-") ? " · Demo" : ""}</p>
-          <h1 className="mt-4 font-display text-display-xl text-balance">{item.vehicle || "Saken din"}</h1>
-          <p className="mt-4 text-stone-dark">{sellerStatusCopy(item.status)}</p>
-          {item.token.startsWith("demo-") ? (
-            <p className="mt-3 text-stone-dark">Demo. Beløpet er annonseprisen fra lageret, ikke et kjøpstilbud.</p>
+          <p className="text-sm text-stone-dark">
+            Saken din hos AutoGrande{demo ? " · Demo" : ""}
+          </p>
+          <h1 className="mt-2 font-display text-display-xl text-balance">{item.vehicle || "Bilen din"}</h1>
+
+          <div className="mt-8">
+            <CaseProgress status={item.status} />
+          </div>
+
+          <p className="mt-8 border-l-4 border-brand bg-surface px-5 py-4 text-lg leading-relaxed">
+            {sellerStatusCopy(item.status)}
+          </p>
+          {demo ? (
+            <p className="mt-3 text-sm text-stone-dark">
+              Dette er en demo. Beløpet er annonseprisen fra lageret, ikke et ekte tilbud.
+            </p>
           ) : null}
 
-          <dl className="mt-10 grid gap-4 rounded-card bg-surface p-6 shadow-card sm:grid-cols-2 sm:p-8">
-            {item.seller.regnr ? (
-              <div>
-                <dt className="text-sm text-stone-dark">Registreringsnummer</dt>
-                <dd className="mt-1 font-display text-display-sm">{item.seller.regnr}</dd>
-              </div>
-            ) : null}
-            <div>
-              <dt className="text-sm text-stone-dark">Kilometerstand</dt>
-              <dd className="mt-1 font-display text-display-sm">{item.seller.km}</dd>
-            </div>
-            <div className="sm:col-span-2">
-              <dt className="text-sm text-stone-dark">Status</dt>
-              <dd className="mt-1 font-semibold">{caseStatusLabel(item.status)}</dd>
-            </div>
-          </dl>
+          <Block title="Bilen">
+            <dl className="grid gap-x-8 sm:grid-cols-2">
+              <Row label="Registreringsnummer" value={item.seller.regnr} />
+              <Row label="Kilometerstand" value={item.seller.km} />
+              <Row label="Prisen du ønsket" value={item.seller.wishedPrice} />
+              <Row label="Sendt inn" value={formatCaseDate(item.createdAt)} />
+            </dl>
+          </Block>
 
-          {item.bookingNote ? (
-            <section className="mt-8">
-              <h2 className="font-display text-display-sm">Avtalen</h2>
-              <p className="mt-3 leading-relaxed text-stone-dark">{item.bookingNote}</p>
-            </section>
-          ) : null}
+          <Block title="Avtalen">
+            <Text value={item.bookingNote} empty="Vi ringer deg for å avtale når bilen kan testes." />
+          </Block>
 
-          {showWorkshop ? (
-            <section className="mt-10">
-              <h2 className="font-display text-display-md">Sjekken</h2>
-              <div className="mt-4 grid gap-4">
+          <Block title="Sjekken">
+            {hasWorkshop ? (
+              <div className="grid gap-6">
                 <Note title="Kjøreturen" body={item.workshop.driven} />
                 <Note title="Verkstedet" body={item.workshop.check} />
                 <Note title="Feil og mangler som kan utbedres" body={item.workshop.faults} />
               </div>
-            </section>
-          ) : null}
+            ) : (
+              <Text value="" empty="Når bilen er testet, står resultatet her." />
+            )}
+          </Block>
 
-          {photos.length > 0 ? (
-            <section className="mt-10">
-              <h2 className="font-display text-display-md">Bilder</h2>
-              <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <Block title="Bilder">
+            {photos.length > 0 ? (
+              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {photos.map((url) => (
-                  <li key={url} className="overflow-hidden rounded-card bg-surface">
-                    {/* Staff paste arbitrary https URLs, which next/image cannot allow in advance. */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={url} alt={item.vehicle || ""} className="aspect-[4/3] w-full object-cover" />
+                  <li key={url} className="relative aspect-[4/3] overflow-hidden rounded-card bg-soft">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- staff paste photo links from any https host */}
+                    <img src={url} alt={item.vehicle || ""} loading="lazy" className="absolute inset-0 size-full object-cover" />
                   </li>
                 ))}
               </ul>
-            </section>
-          ) : null}
+            ) : (
+              <Text value="" empty="Vi tar bildene i egen fotohall. De dukker opp her." />
+            )}
+          </Block>
 
-          {item.status === "offered" ? <Offers item={item} /> : null}
-          {item.token === "demo-tilbud" ? <DemoOutcomes /> : null}
-          {item.decision ? <Decision item={item} /> : null}
+          <Block title="Tilbudet">
+            {item.status === "offered" ? (
+              <Offers item={item} />
+            ) : item.decision ? (
+              <Decision item={item} />
+            ) : (
+              <Text value="" empty="Du får to tilbud her etter testen, og velger selv om du vil gå videre." />
+            )}
+          </Block>
 
-          <p className="mt-12 text-stone-dark">
+          <p className="mt-12 border-t border-line-light pt-6 text-stone-dark">
             Spørsmål? Ring{" "}
             <a href={company.phoneHref} className="font-semibold text-ink underline-offset-4 hover:underline">
               {company.phoneDisplay}
+            </a>{" "}
+            eller send e-post til{" "}
+            <a href={`mailto:${company.email}`} className="font-semibold text-ink underline-offset-4 hover:underline">
+              {company.email}
             </a>
             .
           </p>
@@ -115,85 +128,90 @@ async function SellerCase({ params }: { params: Promise<{ token: string }> }) {
   );
 }
 
-function DemoOutcomes() {
-  const links = [
-    ["/sak/demo-kjop", "Slik ser det ut når kjøpet godtas"],
-    ["/sak/demo-salg", "Slik ser det ut når vi selger bilen"],
-    ["/sak/demo-avslaatt", "Slik ser det ut når begge avslås"],
-  ] as const;
+function Block({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <ul className="mt-6 grid gap-2">
-      {links.map(([href, label]) => (
-        <li key={href}>
-          <Link href={href} className="font-semibold text-ink underline-offset-4 hover:underline">
-            {label}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <section className="mt-10 border-t-2 border-ink pt-5">
+      <h2 className="font-display text-display-md">{title}</h2>
+      <div className="mt-4">{children}</div>
+    </section>
   );
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  if (!value) return null;
+  return (
+    <div className="flex justify-between gap-4 border-b border-line-light py-3">
+      <dt className="text-stone-dark">{label}</dt>
+      <dd className="text-right font-semibold tabular-nums">{value}</dd>
+    </div>
+  );
+}
+
+function Text({ value, empty }: { value: string; empty: string }) {
+  if (value) return <p className="whitespace-pre-wrap leading-relaxed">{value}</p>;
+  return <p className="leading-relaxed text-stone-dark">{empty}</p>;
 }
 
 function Note({ title, body }: { title: string; body: string }) {
   if (!body) return null;
   return (
-    <div className="rounded-card bg-surface p-6 shadow-card">
-      <h3 className="font-display text-display-sm">{title}</h3>
-      <p className="mt-3 whitespace-pre-wrap leading-relaxed text-stone-dark">{body}</p>
+    <div>
+      <h3 className="font-semibold">{title}</h3>
+      <p className="mt-1 whitespace-pre-wrap leading-relaxed text-stone-dark">{body}</p>
     </div>
   );
 }
 
 function Offers({ item }: { item: SellCase }) {
   return (
-    <section className="mt-10">
-      <h2 className="font-display text-display-md">To tilbud</h2>
-      <div className="mt-4 grid gap-4">
-        <form action={decideCase} className="rounded-card bg-surface p-6 shadow-card">
+    <div>
+      <p className="text-stone-dark">Velg ett av tilbudene, eller takk nei. Du bestemmer selv.</p>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <form action={decideCase} className="flex flex-col rounded-card bg-surface p-6 shadow-card">
           <h3 className="font-display text-display-sm">AutoGrande kjøper bilen</h3>
-          <p className="mt-3 font-display text-display-md text-brand">{item.offers.buyPrice}</p>
+          <p className="mt-3 font-display text-display-md tabular-nums">{item.offers.buyPrice}</p>
           <input type="hidden" name="token" value={item.token} />
           <input type="hidden" name="choice" value="buy" />
-          <button type="submit" className={`${buttonClasses("primary")} mt-6`}>
-            Godta dette kjøpet
+          <button type="submit" className={`${buttonClasses("primary")} mt-auto w-full`}>
+            Ja, kjøp bilen min
           </button>
         </form>
-        <form action={decideCase} className="rounded-card bg-surface p-6 shadow-card">
+        <form action={decideCase} className="flex flex-col rounded-card bg-surface p-6 shadow-card">
           <h3 className="font-display text-display-sm">Vi selger bilen for deg</h3>
-          <p className="mt-3 whitespace-pre-wrap leading-relaxed text-stone-dark">{item.offers.sellTerms}</p>
+          <p className="mt-3 mb-6 whitespace-pre-wrap leading-relaxed text-stone-dark">{item.offers.sellTerms}</p>
           <input type="hidden" name="token" value={item.token} />
           <input type="hidden" name="choice" value="sell" />
-          <button type="submit" className={`${buttonClasses("secondary")} mt-6`}>
-            Godta at dere selger den
+          <button type="submit" className={`${buttonClasses("primary")} mt-auto w-full`}>
+            Ja, selg bilen for meg
           </button>
         </form>
       </div>
-      <form action={decideCase} className="mt-4">
+      <form action={decideCase} className="mt-5">
         <input type="hidden" name="token" value={item.token} />
         <input type="hidden" name="choice" value="decline" />
-        <button type="submit" className={buttonClasses("text")}>
-          Avslå begge
+        <button type="submit" className={buttonClasses("secondary")}>
+          Nei takk, ingen av dem
         </button>
       </form>
-    </section>
+    </div>
   );
 }
 
 function Decision({ item }: { item: SellCase }) {
-  if (!item.decision || item.status === "offered") return null;
+  if (!item.decision) return null;
   const decision = item.decision;
-  const body =
-    decision.choice === "buy"
-      ? decision.buyPrice
-      : decision.choice === "sell"
-        ? decision.sellTerms
-        : "Begge tilbudene ble avslått.";
   const title =
-    decision.choice === "buy" ? "Du godtok kjøpet" : decision.choice === "sell" ? "Du godtok at vi selger bilen" : "Du har avslått";
+    decision.choice === "buy"
+      ? "Du valgte at AutoGrande kjøper bilen"
+      : decision.choice === "sell"
+        ? "Du valgte at vi selger bilen for deg"
+        : "Du takket nei til begge tilbudene";
+  const body = decision.choice === "buy" ? decision.buyPrice : decision.choice === "sell" ? decision.sellTerms : "";
   return (
-    <section className="mt-10 rounded-card bg-soft p-6">
-      <h2 className="font-display text-display-sm">{title}</h2>
-      <p className="mt-3 whitespace-pre-wrap leading-relaxed text-stone-dark">{body}</p>
-    </section>
+    <div className="rounded-card bg-surface p-6 shadow-card">
+      <h3 className="font-display text-display-sm">{title}</h3>
+      {body ? <p className="mt-3 whitespace-pre-wrap leading-relaxed text-stone-dark">{body}</p> : null}
+      <p className="mt-4 text-sm text-stone-dark">Svar sendt {formatCaseDate(decision.at)}</p>
+    </div>
   );
 }

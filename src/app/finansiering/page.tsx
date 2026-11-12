@@ -10,7 +10,7 @@ export const metadata = pageMetadata(
 
 export default function FinancePage() {
   return (
-    <InfoFormPage id="finansiering-tittel" eyebrow="Finansiering" title="Lån eller leasing." form={leadForms.finansiering}>
+    <InfoFormPage id="finansiering-tittel" title="Lån eller leasing." form={leadForms.finansiering}>
       <p>Vi samarbeider med Santander Consumer Bank AS og AS Financiering.</p>
       <p>For å kunne gi deg et tilbud så trenger vi noen få opplysninger.</p>
     </InfoFormPage>

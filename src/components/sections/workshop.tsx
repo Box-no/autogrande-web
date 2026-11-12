@@ -12,7 +12,6 @@ export function Workshop({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }
           <SectionHeading
             id="verksted-tittel"
             level={headingLevel}
-            eyebrow="Verksted i Grenland"
             size={headingLevel === "h1" ? "xl" : "lg"}
             title="Avtalt pris. Ingen overraskelser."
           >
@@ -23,9 +22,9 @@ export function Workshop({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }
             <p className="mt-4 text-base">[PLACEHOLDER: hvilke merker verkstedet tar imot]</p>
           </SectionHeading>
 
-          <ul className="mt-14 grid gap-4 md:grid-cols-3">
+          <ul className="mt-14 grid gap-x-10 md:grid-cols-3">
             {workshopPromises.map((promise) => (
-              <li key={promise.title} className="rounded-card bg-surface p-7 shadow-card md:p-9">
+              <li key={promise.title} className="border-t-2 border-ink py-6">
                 <SubHeading className="font-display text-display-sm">{promise.title}</SubHeading>
                 <p className="mt-4 leading-relaxed text-stone-dark">{promise.body}</p>
               </li>

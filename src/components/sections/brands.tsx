@@ -5,14 +5,16 @@ export function Brands() {
   return (
     <section aria-labelledby="merker-tittel" className="bg-paper py-16 md:py-24">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <p className="text-sm font-semibold text-stone-dark">Spesialister</p>
         <h2 id="merker-tittel" className="sr-only">
           Spesialisert på Audi, BMW og Mercedes-Benz
         </h2>
 
-        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+        <ul className="grid border-y-2 border-ink md:grid-cols-3">
           {brands.map((brand) => (
-            <li key={brand} className="rounded-card bg-surface px-6 py-8 font-display text-display-md shadow-card">
+            <li
+              key={brand}
+              className="border-line-light py-8 font-display text-display-md max-md:not-last:border-b md:not-last:border-r md:px-6 md:first:pl-0"
+            >
               {brand}
             </li>
           ))}

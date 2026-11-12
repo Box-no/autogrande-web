@@ -1,7 +1,18 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { decideIfOffered, getCase, httpsUrls, isCaseStatus, saveCase, sellerPath, type SellCase } from "@/lib/cases";
+import {
+  decideIfOffered,
+  getCase,
+  httpsUrls,
+  isCaseStatus,
+  isDemoCase,
+  saveCase,
+  sellerPath,
+  type SellCase,
+} from "@/lib/cases";
+
+const demoOutcome = { buy: "demo-kjop", sell: "demo-salg", decline: "demo-avslaatt" } as const;
 import { isStaff } from "@/lib/staff-auth";
 
 function clip(value: FormDataEntryValue | null, max = 2000) {
@@ -18,6 +29,7 @@ export async function saveCaseAction(formData: FormData) {
   const token = clip(formData.get("token"), 80);
   const current = await getCase(token);
   if (!current) redirect("/intern/saker");
+  if (isDemoCase(token)) fail(token, "Dette er en demo. Endringer lagres ikke på demo-bilene.");
 
   const statusValue = clip(formData.get("status"), 40);
   if (!isCaseStatus(statusValue)) fail(token, "Ukjent status.");
@@ -68,6 +80,7 @@ export async function decideCase(formData: FormData) {
   const token = clip(formData.get("token"), 80);
   const choice = clip(formData.get("choice"), 20);
   if (choice !== "buy" && choice !== "sell" && choice !== "decline") redirect(sellerPath(token));
+  if (isDemoCase(token)) redirect(sellerPath(token === "demo-tilbud" ? demoOutcome[choice] : token));
 
   try {
     await decideIfOffered(token, choice);

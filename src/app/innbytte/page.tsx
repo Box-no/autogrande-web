@@ -10,7 +10,7 @@ export const metadata = pageMetadata(
 
 export default function TradeInPage() {
   return (
-    <InfoFormPage id="innbytte-tittel" eyebrow="Innbytte" title="Vi tar bilen din i innbytte." form={leadForms.innbytte}>
+    <InfoFormPage id="innbytte-tittel" title="Vi tar bilen din i innbytte." form={leadForms.innbytte}>
       <p>På tide å bytte bil? Vi tar gjerne bilen din i innbytte!</p>
       <p>Fyll ut skjemaet, så sender vi deg et tilbud så fort som mulig.</p>
     </InfoFormPage>

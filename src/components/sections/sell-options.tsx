@@ -13,7 +13,7 @@ export function SellOptions() {
   return (
     <section aria-labelledby="andre-maater-tittel" className="bg-paper py-20 md:py-28">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <SectionHeading id="andre-maater-tittel" eyebrow="Andre måter å selge på" title="Innbytte eller formidlingssalg.">
+        <SectionHeading id="andre-maater-tittel" title="Innbytte eller formidlingssalg.">
           <p>Du kan også bytte inn bilen, eller lese vilkårene for formidlingssalg.</p>
         </SectionHeading>
 

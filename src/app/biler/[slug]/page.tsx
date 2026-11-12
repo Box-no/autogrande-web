@@ -62,10 +62,10 @@ async function CarDetail({ params }: { params: PageProps<"/biler/[slug]">["param
 
             <div className="lg:col-span-5">
               <h1 className="font-display text-display-lg text-balance">{car.title}</h1>
-              <p className="mt-3 font-display text-display-md text-brand tabular-nums">{car.price}</p>
-              <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5">
+              <p className="mt-3 font-display text-display-md tabular-nums">{car.price}</p>
+              <dl className="mt-8 grid grid-cols-2 gap-x-6 border-t-2 border-ink">
                 {car.highlights.map((line) => (
-                  <div key={line.label}>
+                  <div key={line.label} className="border-b border-line-light py-3">
                     <dt className="text-sm text-stone-dark">{line.label}</dt>
                     <dd className="mt-1 font-semibold tabular-nums">{specValue(line.label, line.value)}</dd>
                   </div>
@@ -126,7 +126,7 @@ async function CarDetail({ params }: { params: PageProps<"/biler/[slug]">["param
                     {other.km ? ` · ${other.km}` : ""}
                   </p>
                   <h3 className="mt-2 font-display text-display-sm">{other.title}</h3>
-                  <p className="mt-3 font-semibold text-brand tabular-nums">{other.price}</p>
+                  <p className="mt-3 font-semibold tabular-nums">{other.price}</p>
                 </Link>
               </li>
             ))}

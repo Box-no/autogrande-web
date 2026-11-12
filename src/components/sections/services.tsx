@@ -4,23 +4,22 @@ import { services } from "@/content/site";
 
 export function Services() {
   return (
-    <section aria-labelledby="tjenester-tittel" className="bg-paper py-20 md:py-28">
+    <section aria-labelledby="tjenester-tittel" className="bg-surface py-16 md:py-24">
       <div className="mx-auto max-w-site px-5 md:px-10">
-        <SectionHeading id="tjenester-tittel" eyebrow="Hele veien" title="Alt rundt bilkjøpet, på ett sted." />
+        <SectionHeading id="tjenester-tittel" title="Alt rundt bilkjøpet, på ett sted." />
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 border-t-2 border-ink">
           {services.map((service) => (
-            <li
-              key={service.title}
-              className="group relative flex flex-col rounded-card bg-surface p-7 shadow-card"
-            >
-              <h3 className="font-display text-display-sm">{service.title}</h3>
-              <p className="mt-4 flex-1 leading-relaxed text-stone-dark">{service.body}</p>
+            <li key={service.title} className="border-b border-line-light">
               <Link
                 href={service.href}
-                className="mt-8 w-fit text-sm font-semibold text-brand after:absolute after:inset-0 group-hover:text-brand-deep"
+                className="group grid gap-2 py-6 md:grid-cols-12 md:items-baseline md:gap-8"
               >
-                {service.cta}
+                <h3 className="font-display text-display-sm md:col-span-3">{service.title}</h3>
+                <p className="leading-relaxed text-stone-dark md:col-span-6">{service.body}</p>
+                <span className="text-sm font-semibold underline decoration-brand decoration-2 underline-offset-[6px] group-hover:text-brand-deep md:col-span-3 md:justify-self-end">
+                  {service.cta}
+                </span>
               </Link>
             </li>
           ))}

@@ -73,8 +73,68 @@ const sellerStatusText: Record<CaseStatus, string> = {
   listed: "Bilen er lagt ut for salg.",
 };
 
+const staffNextStep: Record<CaseStatus, string> = {
+  new: "Ring selgeren og avtal en tid for testing. Skriv avtalen under «Avtale», og velg «Testing avtalt».",
+  booked: "Når bilen er kjørt og sjekket: skriv hva dere fant under «Sjekken», og velg «Bilen er sjekket».",
+  checked: "Skriv de to tilbudene under «Tilbud», og trykk «Send tilbud til selger».",
+  offered: "Selgeren har fått tilbudene. Du trenger ikke gjøre noe før selgeren har svart.",
+  accepted_buy: "Selgeren vil at AutoGrande kjøper bilen. Ta kontakt med selgeren om det videre.",
+  accepted_sell: "Selgeren vil at dere selger bilen. Når den er lagt ut, velg «Lagt ut for salg».",
+  declined: "Selgeren takket nei til begge tilbudene. Saken er avsluttet.",
+  listed: "Bilen er lagt ut for salg. Saken er ferdig her.",
+};
+
 export function caseStatusLabel(status: CaseStatus) {
   return statusLabels[status];
+}
+
+export function staffNextStepCopy(status: CaseStatus) {
+  return staffNextStep[status];
+}
+
+export const caseSteps = ["Mottatt", "Testing avtalt", "Sjekket", "Tilbud sendt", "Selgers valg", "Lagt ut"] as const;
+
+export function caseStepIndex(status: CaseStatus) {
+  const order: Record<CaseStatus, number> = {
+    new: 0,
+    booked: 1,
+    checked: 2,
+    offered: 3,
+    accepted_buy: 4,
+    accepted_sell: 4,
+    declined: 4,
+    listed: 5,
+  };
+  return order[status];
+}
+
+export type CaseGroup = "todo" | "waiting" | "done";
+
+export function caseGroup(status: CaseStatus): CaseGroup {
+  if (status === "new" || status === "booked" || status === "checked" || status === "accepted_buy" || status === "accepted_sell") {
+    return "todo";
+  }
+  if (status === "offered") return "waiting";
+  return "done";
+}
+
+const dateFormat = new Intl.DateTimeFormat("nb-NO", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  timeZone: "Europe/Oslo",
+});
+
+const timeFormat = new Intl.DateTimeFormat("nb-NO", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Oslo" });
+
+export function formatCaseDate(iso: string) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return `${dateFormat.format(date)} kl. ${timeFormat.format(date)}`;
+}
+
+export function isDemoCase(token: string) {
+  return token.startsWith("demo-");
 }
 
 export function sellerStatusCopy(status: CaseStatus) {

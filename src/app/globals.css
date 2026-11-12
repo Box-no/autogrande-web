@@ -5,10 +5,10 @@
   --ag-ink: #1a1a1a;
   --ag-carbon: #141414;
   --ag-line-dark: #2c2c2c;
-  --ag-paper: #f6f3ef;
-  --ag-soft: #f3ebe6;
+  --ag-paper: #f4f3f1;
+  --ag-soft: #ebe9e5;
   --ag-surface: #ffffff;
-  --ag-line-light: #e7e1da;
+  --ag-line-light: #dcd9d4;
   --ag-stone: #8a847c;
   --ag-stone-dark: #5e5954;
   --ag-red: #d8232a;
@@ -45,10 +45,10 @@
 
   --tracking-display: -0.03em;
 
-  --radius-card: 1.5rem;
-  --radius-control: 999px;
+  --radius-card: 0.375rem;
+  --radius-control: 0.25rem;
 
-  --shadow-card: 0 10px 30px rgb(26 26 26 / 0.06);
+  --shadow-card: 0 0 0 1px var(--ag-line-light);
 
   --container-site: 80rem;
 
@@ -67,7 +67,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 7.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
